@@ -7,6 +7,7 @@ void criar_threads(void);
 void criar_estados(void);
 void criar_transicoes(void);
 void gerar_imagem(void);
+void procurar(void);
 
 int main(void)
 {
@@ -43,3 +44,9 @@ void gerar_imagem(void)
     /*TODO: criar funcao para gerar imagem da rede de petri.*/
     ;
 }
+
+void procurar(void);
+{
+    ;
+}
+
