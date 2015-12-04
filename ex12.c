@@ -21,6 +21,10 @@ void criar_estados(void);
 void criar_transicoes(void);
 void gerar_imagem(void);
 void procurar(void);
+void receber_tokens(void);
+void enviar_tokens(void);
+void retirar_item(void);
+void transferir_item(void);
 
 int main(void)
 {
@@ -76,3 +80,14 @@ void enviar_tokens(void)
     ;
 }
 
+void retirar_item(void)
+{
+    /*TODO: criar funcao para retirar item de uma lista.*/
+    ;
+}
+
+void transferir_item(void)
+{
+    /*TODO: criar funcao para transferir item de uma lista para outra.*/
+    ;
+}
