@@ -11,8 +11,8 @@ typedef struct estados /*Estrutura para armazenar estados.*/
 typedef struct transicoes /*Estrutura para armazenar transicoes.*/
 {
     int ntr; /*Numero da transicao*/
-    /*TODO: definir forma saber pra onde enviar e de onde receber tokens.*/
     struct transicoes prox;
+    struct arcos cabeca;
 }transsicoes;
 
 typedef struct arcos /*Estrutura para armazenar arcos*/
