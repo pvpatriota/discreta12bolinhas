@@ -8,6 +8,13 @@ typedef struct estados /*Estrutura para definir os estados.*/
     struct estados prox;
 }estados;
 
+typedef struct transicoes /*Estrutura para definir as transicoes.*/
+{
+    int ntr; /*Numero da transicao*/
+    /*TODO: determinar arcos que entram e arcos que saem da transicao.*/
+    struct transicoes prox;
+}transsicoes;
+
 void gerar_entrada(void);
 void criar_threads(void);
 void criar_estados(void);
