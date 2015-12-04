@@ -11,7 +11,7 @@ typedef struct estados /*Estrutura para definir os estados.*/
 typedef struct transicoes /*Estrutura para definir as transicoes.*/
 {
     int ntr; /*Numero da transicao*/
-    /*TODO: determinar arcos que entram e arcos que saem da transicao.*/
+    /*TODO: definir forma saber pra onde enviar e de onde receber tokens.*/
     struct transicoes prox;
 }transsicoes;
 
@@ -61,6 +61,18 @@ void gerar_imagem(void)
 void procurar(void);
 {
     /*TODO: criar funcao para procurar determinada posicao.*/
+    ;
+}
+
+void receber_tokens(void)
+{
+    /*TODO: criar funcao para transicao receber tokens.*/
+    ;
+}
+
+void enviar_tokens(void)
+{
+    /*TODO: criar funcao para transicao enviar tokens.*/
     ;
 }
 
