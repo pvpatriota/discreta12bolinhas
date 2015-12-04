@@ -2,18 +2,24 @@
 #include <pthreads.h>
 #include <stdlib.h>
 
-typedef struct estados /*Estrutura para definir os estados.*/
+typedef struct estados /*Estrutura para armazenar estados.*/
 {
     int ne, nt; /*Numero do estado e numero de tokens, respectivamente.*/
     struct estados prox;
 }estados;
 
-typedef struct transicoes /*Estrutura para definir as transicoes.*/
+typedef struct transicoes /*Estrutura para armazenar transicoes.*/
 {
     int ntr; /*Numero da transicao*/
     /*TODO: definir forma saber pra onde enviar e de onde receber tokens.*/
     struct transicoes prox;
 }transsicoes;
+
+typedef struct arcos /*Estrutura para armazenar arcos*/
+{
+    int origem, corigem, destino, cdestino; /*ponto de origem, custo da origem, destino e custo do destino, respectivamente.*/
+    struct arcos prox;
+}arcos;
 
 void gerar_entrada(void);
 void criar_threads(void);
