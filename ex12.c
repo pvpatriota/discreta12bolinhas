@@ -2,7 +2,7 @@
 #include <pthreads.h>
 #include <stdlib.h>
 
-void gerar_banco(void);
+void gerar_entrada(void);
 void criar_threads(void);
 void criar_estados(void);
 void criar_transicoes(void);
@@ -15,9 +15,9 @@ int main(void)
     return 0;
 }
 
-void gerar_banco(void)
+void gerar_entrada(void)
 {
-    /*TODO: criar funcao para gerar o banco de dados.*/
+    /*TODO: criar funcao para gerar a entrada.*/
     ;
 }
 
@@ -47,6 +47,7 @@ void gerar_imagem(void)
 
 void procurar(void);
 {
+    /*TODO: criar funcao para procurar determinada posicao.*/
     ;
 }
 
