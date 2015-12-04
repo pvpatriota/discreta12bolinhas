@@ -2,6 +2,12 @@
 #include <pthreads.h>
 #include <stdlib.h>
 
+typedef struct estados /*Estrutura para definir os estados.*/
+{
+    int ne, nt; /*Numero do estado e numero de tokens, respectivamente.*/
+    struct estados prox;
+}estados;
+
 void gerar_entrada(void);
 void criar_threads(void);
 void criar_estados(void);
