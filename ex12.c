@@ -42,13 +42,19 @@ int main(void)
 
 void gerar_entrada(void)
 {
-    /*TODO: criar funcao para gerar a entrada.*/
-    int est, tr, ect, aet, ate; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
+    /*Lembrete! Funcao deve receber ponteiro com cabeca dos estados e ponteiro com cabeca das transicoes.*/
+    int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
     arcos *cabeca_arcos = NULL;
     /*TODO: ler linhas estaticas*/
     gerar_estados();
-    relacionar_tokens();
-    gerar_arcos();
+    for(i=0; i<ect; i++)
+    {
+        relacionar_tokens();
+    }
+    for(i=0; i<(aet+ate); i++)
+    {
+        gerar_arcos();
+    }
     gerar_transicoes();
 }
 
