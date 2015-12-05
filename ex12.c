@@ -31,17 +31,24 @@ void receber_tokens(void);
 void enviar_tokens(void);
 void retirar_item(void);
 void transferir_item(void);
+void gerar_arcos(void);
 
 int main(void)
 {
     /*TODO: criar bloco base.*/
+    gerar_entrada();
     return 0;
 }
 
 void gerar_entrada(void)
 {
     /*TODO: criar funcao para gerar a entrada.*/
-    ;
+    int est, tr, ect, aet, ate; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
+    /*TODO: ler linhas estaticas*/
+    gerar_estados();
+    relacionar_tokens();
+    gerar_arcos();
+    gerar_transicoes();
 }
 
 void criar_threads(void)
@@ -59,6 +66,7 @@ void criar_estados(void)
 void criar_transicoes(void)
 {
     /*TODO: criar funcao para criar as transicoes da rede de petri.*/
+    /*Lembrete! Funcao deve relacionar os arcos com as transicoes.*/
     ;
 }
 
@@ -95,6 +103,12 @@ void retirar_item(void)
 void transferir_item(void)
 {
     /*TODO: criar funcao para transferir item de uma lista para outra.*/
+    ;
+}
+
+void gerar_arcos(void)
+{
+    /*TODO: criar funcao para gerar lista de arcos.*/
     ;
 }
 
