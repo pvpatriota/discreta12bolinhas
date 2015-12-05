@@ -31,7 +31,6 @@ void receber_tokens(void);
 void enviar_tokens(void);
 void retirar_item(void);
 void transferir_item(void);
-void ler_dados(void);
 
 int main(void)
 {
@@ -96,12 +95,6 @@ void retirar_item(void)
 void transferir_item(void)
 {
     /*TODO: criar funcao para transferir item de uma lista para outra.*/
-    ;
-}
-
-void ler_dados(void)
-{
-    /*TODO: criar funcao para leitura de dados.*/
     ;
 }
 
