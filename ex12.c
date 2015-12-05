@@ -44,6 +44,7 @@ void gerar_entrada(void)
 {
     /*TODO: criar funcao para gerar a entrada.*/
     int est, tr, ect, aet, ate; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
+    arcos *cabeca_arcos = NULL;
     /*TODO: ler linhas estaticas*/
     gerar_estados();
     relacionar_tokens();
