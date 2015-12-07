@@ -144,18 +144,19 @@ void transferir_arco(void)
 
 void criar_arcos(arcos **p_arcos, int a1, int a2)
 {
-    /*TODO: criar funcao para gerar lista de arcos.*/
-    /*Deve retornar o ponteiro para os arcos.*/
     arcos *pl=*p_arcos;
-    while(a1>0)
+    int x, y, z, aux=a1;
+    while((a1+a2)>0)
     {
-        /*TODO: ler dados.*/
+        pl=malloc(sizeof(arcos));
+        scanf("%d %d %d", &x, &y, &z);
+        pl->origem=x;
+        pl->destino=z;
+        pl->custo=y;
+        if(aux==a1)
+            *p_arcos=pl;
+        pl=pl->prox=NULL;
         a1--;
-    }
-    while(a2>0)
-    {
-        /*TODO: ler dados.*/
-        a2--;
     }
 }
 
