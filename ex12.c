@@ -12,12 +12,13 @@ typedef struct transicoes /*Estrutura para armazenar transicoes.*/
 {
     int ntr; /*Numero da transicao*/
     struct transicoes *prox;
-    struct arcos *cabeca;
+    struct arcos *cabeca_entram;
+    struct arcos *cabeca_saem;
 }transicoes;
 
 typedef struct arcos /*Estrutura para armazenar arcos*/
 {
-    int origem, corigem, destino, cdestino; /*ponto de origem, custo da origem, destino e custo do destino, respectivamente.*/
+    int origem, corigem, custo; /*ponto de origem, custo da origem, destino e custo.*/
     struct arcos *prox;
 }arcos;
 
@@ -145,11 +146,20 @@ void transferir_arco(void)
     ;
 }
 
-void criar_arcos(void)
+void criar_arcos(arcos **p_arcos, int a1, int a2)
 {
     /*TODO: criar funcao para gerar lista de arcos.*/
     /*Deve retornar o ponteiro para os arcos.*/
-    ;
+    arcos *pl=*p_arcos;
+    while(a1>0)
+    {
+
+        a--;
+    }
+    while(a2>0)
+    {
+        a--;
+    }
 }
 
 void relacionar_tokens(void)
