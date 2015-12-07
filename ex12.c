@@ -120,3 +120,6 @@ void criar_arcos(void)
     ;
 }
 
+void relacionar_tokens(void)
+{
+    /*TODO: criar funcao para relacionar os tokens da entrada com os seus respectivos estados.*/
