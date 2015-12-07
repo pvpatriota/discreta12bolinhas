@@ -27,7 +27,6 @@ void criar_estados(void);
 void criar_transicoes(void);
 void gerar_imagem(void);
 void procurar(void);
-void receber_tokens(void);
 void enviar_tokens(void);
 void retirar_item(void);
 void transferir_item(void);
@@ -90,12 +89,6 @@ void gerar_imagem(void)
 void procurar(void)
 {
     /*TODO: criar funcao para procurar determinada posicao.*/
-    ;
-}
-
-void receber_tokens(void)
-{
-    /*TODO: criar funcao para transicao receber tokens.*/
     ;
 }
 
