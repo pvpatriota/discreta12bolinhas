@@ -23,7 +23,7 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(void);
-void criar_estados(void);
+void criar_estados(estados **p_estados, int num);
 void criar_transicoes(void);
 void gerar_imagem(void);
 void procurar(void);
@@ -48,9 +48,9 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 {
     /*Lembrete! Funcao deve receber ponteiro com cabeca dos estados e ponteiro com cabeca das transicoes.*/
     int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
-    arcos *cabeca_arcos = NULL;
+    arcos *cabeca_arcos=NULL;
     /*TODO: ler linhas estaticas*/
-    criar_estados();
+    criar_estados(p_estados, tr);
     for(i=0; i<ect; i++)
     {
         relacionar_tokens();
@@ -68,11 +68,27 @@ void criar_threads(void)
     ;
 }
 
-void criar_estados(void)
+void criar_estados(estados **p_estados, int num)
 {
-    /*TODO: criar funcao para criar os estados da rede de petri.*/
-
-    ;
+    int i=0;
+    estados *pl=NULL;
+    estados *plant=NULL;
+    for(; i<num; i++)
+    {
+        pl=malloc(sizeof(estados));
+        pl->ne=i;
+        pl->nt=0;
+        pl->prox=NULL;
+        if(plant!=NULL)
+        {
+            plant->prox=pl;
+            pl=pl->prox;
+        }
+        else
+        {
+            *p_estados=pl;
+        }
+    }
 }
 
 void criar_transicoes(void)
