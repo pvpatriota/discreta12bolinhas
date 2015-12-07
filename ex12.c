@@ -103,12 +103,6 @@ void gerar_imagem(void)
     ;
 }
 
-void procurar_arco(void)
-{
-    /*TODO: criar funcao para procurar determinada posicao.*/
-    ;
-}
-
 void enviar_tokens(void)
 {
     /*TODO: criar funcao para transicao enviar tokens.*/
