@@ -1,24 +1,24 @@
 #include <stdio.h>
-#include <pthreads.h>
+#include <pthread.h>
 #include <stdlib.h>
 
 typedef struct estados /*Estrutura para armazenar estados.*/
 {
     int ne, nt; /*Numero do estado e numero de tokens, respectivamente.*/
-    struct estados prox;
+    struct estados *prox;
 }estados;
 
 typedef struct transicoes /*Estrutura para armazenar transicoes.*/
 {
     int ntr; /*Numero da transicao*/
-    struct transicoes prox;
-    struct arcos cabeca;
+    struct transicoes *prox;
+    struct arcos *cabeca;
 }transsicoes;
 
 typedef struct arcos /*Estrutura para armazenar arcos*/
 {
     int origem, corigem, destino, cdestino; /*ponto de origem, custo da origem, destino e custo do destino, respectivamente.*/
-    struct arcos prox;
+    struct arcos *prox;
 }arcos;
 
 void gerar_entrada(void);
@@ -31,7 +31,8 @@ void receber_tokens(void);
 void enviar_tokens(void);
 void retirar_item(void);
 void transferir_item(void);
-void gerar_arcos(void);
+void criar_arcos(void);
+void relacionar_tokens(void);
 
 int main(void)
 {
@@ -46,16 +47,16 @@ void gerar_entrada(void)
     int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
     arcos *cabeca_arcos = NULL;
     /*TODO: ler linhas estaticas*/
-    gerar_estados();
+    criar_estados();
     for(i=0; i<ect; i++)
     {
         relacionar_tokens();
     }
     for(i=0; i<(aet+ate); i++)
     {
-        gerar_arcos();
+        criar_arcos();
     }
-    gerar_transicoes();
+    criar_transicoes();
 }
 
 void criar_threads(void)
@@ -83,7 +84,7 @@ void gerar_imagem(void)
     ;
 }
 
-void procurar(void);
+void procurar(void)
 {
     /*TODO: criar funcao para procurar determinada posicao.*/
     ;
@@ -113,7 +114,7 @@ void transferir_item(void)
     ;
 }
 
-void gerar_arcos(void)
+void criar_arcos(void)
 {
     /*TODO: criar funcao para gerar lista de arcos.*/
     ;
