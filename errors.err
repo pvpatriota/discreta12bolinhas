@@ -1,20 +1,17 @@
 ex12.c: In function ‘gerar_entrada’:
-ex12.c:48:12: warning: unused variable ‘cabeca_arcos’ [-Wunused-variable]
+ex12.c:50:12: warning: unused variable ‘cabeca_arcos’ [-Wunused-variable]
      arcos *cabeca_arcos = NULL;
             ^
-ex12.c:47:14: warning: unused variable ‘tr’ [-Wunused-variable]
+ex12.c:49:14: warning: unused variable ‘tr’ [-Wunused-variable]
      int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
               ^
-ex12.c:47:9: warning: unused variable ‘est’ [-Wunused-variable]
+ex12.c:49:9: warning: unused variable ‘est’ [-Wunused-variable]
      int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
          ^
-ex12.c:51:5: warning: ‘ect’ is used uninitialized in this function [-Wuninitialized]
+ex12.c:53:5: warning: ‘ect’ is used uninitialized in this function [-Wuninitialized]
      for(i=0; i<ect; i++)
      ^
-ex12.c:55:20: warning: ‘aet’ is used uninitialized in this function [-Wuninitialized]
+ex12.c:57:20: warning: ‘aet’ is used uninitialized in this function [-Wuninitialized]
      for(i=0; i<(aet+ate); i++)
                     ^
-ex12.c:55:20: warning: ‘ate’ is used uninitialized in this function [-Wuninitialized]
-/tmp/ccr5UeIf.o: In function `gerar_entrada':
-/home/jppra/discreta/rascunhos/discreta12bolinhas/ex12.c:53: undefined reference to `relacionar_tokens'
-collect2: error: ld returned 1 exit status
+ex12.c:57:20: warning: ‘ate’ is used uninitialized in this function [-Wuninitialized]

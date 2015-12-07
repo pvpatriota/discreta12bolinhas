@@ -38,6 +38,8 @@ int main(void)
 {
     /*TODO: criar bloco base.*/
     gerar_entrada();
+    criar_threads();
+    gerar_imagem();
     return 0;
 }
 
@@ -123,3 +125,6 @@ void criar_arcos(void)
 void relacionar_tokens(void)
 {
     /*TODO: criar funcao para relacionar os tokens da entrada com os seus respectivos estados.*/
+    ;
+}
+
