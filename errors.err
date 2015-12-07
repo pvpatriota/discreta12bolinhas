@@ -12,6 +12,13 @@ ex12.c:93:36: warning: unused parameter ‘p_transicoes’ [-Wunused-parameter]
 ex12.c:93:58: warning: unused parameter ‘p_arcos’ [-Wunused-parameter]
  void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos)
                                                           ^
+ex12.c: In function ‘transferir_arco’:
+ex12.c:124:12: warning: variable ‘r’ set but not used [-Wunused-but-set-variable]
+     arcos *r;
+            ^
+ex12.c:122:50: warning: unused parameter ‘p_transicao’ [-Wunused-parameter]
+ void transferir_arco(arcos **p_arco, transicoes *p_transicao)
+                                                  ^
 ex12.c: In function ‘gerar_entrada’:
 ex12.c:54:5: warning: ‘tr’ is used uninitialized in this function [-Wuninitialized]
      criar_estados(p_estados, tr);

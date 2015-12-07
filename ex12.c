@@ -29,7 +29,7 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos);
 void gerar_imagem(void);
 void procurar(void);
 void enviar_tokens(void);
-arcos *retirar_arco(arcos **p_arco, arcos *r);
+arcos *retirar_arco(arcos **p_arco);
 void transferir_item(void);
 void criar_arcos(arcos **p_arcos, int a1, int a2);
 void relacionar_tokens(void);
@@ -109,31 +109,24 @@ void enviar_tokens(void)
     ;
 }
 
-arcos *retirar_arco(arcos **p_arco, arcos *r)
+arcos *retirar_arco(arcos **p_arco)
 {
     arcos *pl=*p_arco;
-    arcos *plant=NULL;
-    if(r==NULL || pl==NULL)
-        return NULL;
-    while(pl!=r && p_arco!=NULL)
-    {
-        plant=pl;
-        pl=pl->prox;
-    }
-    if(plant!=NULL)
-    {
-        pl->prox=plant->prox;
-        plant->prox=pl;
-    }
-    else
-        *p_arco=pl->prox;
+    if(pl==NULL)
+        return pl;
+    *p_arco=pl->prox;
+    pl->prox=NULL;
     return pl;
 }
 
-void transferir_arco(void)
+void transferir_arco(arcos **p_arco, transicoes *p_transicao)
 {
-    /*TODO: adicionar item retirado na lista de destino..*/
-    ;
+    arcos *r;
+    while(p_arco!=NULL)
+    {
+        r=retirar_arco(p_arco);
+        /*TODO: colocar r na transicao que ele esta ligado.*/
+    }
 }
 
 void criar_arcos(arcos **p_arcos, int a1, int a2)
