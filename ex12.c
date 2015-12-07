@@ -12,13 +12,13 @@ typedef struct transicoes /*Estrutura para armazenar transicoes.*/
 {
     int ntr; /*Numero da transicao*/
     struct transicoes *prox;
-    struct arcos *cabeca_entram;
-    struct arcos *cabeca_saem;
+    struct arcos *entram;
+    struct arcos *saem;
 }transicoes;
 
 typedef struct arcos /*Estrutura para armazenar arcos*/
 {
-    int origem, corigem, custo; /*ponto de origem, custo da origem, destino e custo.*/
+    int origem, destino, custo; /*ponto de origem, destino e custo para transicao ou quantidade de token que a transicao ira enviar.*/
     struct arcos *prox;
 }arcos;
 
@@ -31,7 +31,7 @@ void procurar(void);
 void enviar_tokens(void);
 arcos *retirar_arco(arcos **p_arco, arcos *r);
 void transferir_item(void);
-void criar_arcos(void);
+void criar_arcos(arcos **p_arcos, int a1, int a2);
 void relacionar_tokens(void);
 
 int main(void)
@@ -57,11 +57,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
         /*Este for deve estar dentro da funcao relacionar_tokens.*/
         relacionar_tokens();
     }
-    for(i=0; i<(aet+ate); i++)
-    {
-        /*Este for deve estar dentro da funcao criar_arcos.*/
-        criar_arcos();
-    }
+    criar_arcos(&cabeca_arcos, est, tr);
     criar_transicoes(p_transicoes, &cabeca_arcos);
 }
 
@@ -153,12 +149,13 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
     arcos *pl=*p_arcos;
     while(a1>0)
     {
-
-        a--;
+        /*TODO: ler dados.*/
+        a1--;
     }
     while(a2>0)
     {
-        a--;
+        /*TODO: ler dados.*/
+        a2--;
     }
 }
 
