@@ -24,11 +24,11 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(void);
 void criar_estados(estados **p_estados, int num);
-void criar_transicoes(void);
+void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos);
 void gerar_imagem(void);
 void procurar(void);
 void enviar_tokens(void);
-void retirar_item(void);
+arcos *retirar_arco(arcos **p_arco, arcos *r);
 void transferir_item(void);
 void criar_arcos(void);
 void relacionar_tokens(void);
@@ -53,13 +53,15 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
     criar_estados(p_estados, tr);
     for(i=0; i<ect; i++)
     {
+        /*Este for deve estar dentro da funcao relacionar_tokens.*/
         relacionar_tokens();
     }
     for(i=0; i<(aet+ate); i++)
     {
+        /*Este for deve estar dentro da funcao criar_arcos.*/
         criar_arcos();
     }
-    criar_transicoes();
+    criar_transicoes(p_transicoes, &cabeca_arcos);
 }
 
 void criar_threads(void)
@@ -91,10 +93,10 @@ void criar_estados(estados **p_estados, int num)
     }
 }
 
-void criar_transicoes(void)
+void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos)
 {
     /*TODO: criar funcao para criar as transicoes da rede de petri.*/
-    /*Lembrete! Funcao deve relacionar os arcos com as transicoes.*/
+    /*TODO: relacionar arcos com as transicoes.*/
     ;
 }
 
@@ -104,7 +106,7 @@ void gerar_imagem(void)
     ;
 }
 
-void procurar(void)
+void procurar_arco(void)
 {
     /*TODO: criar funcao para procurar determinada posicao.*/
     ;
@@ -116,15 +118,29 @@ void enviar_tokens(void)
     ;
 }
 
-void retirar_item(void)
+arcos *retirar_arco(arcos **p_arco, arcos *r)
 {
-    /*TODO: criar funcao para retirar item de uma lista.*/
-    ;
+    arcos *pl=*p_arco;
+    arcos *plant=NULL;
+    if(r==NULL || pl==NULL)
+        return NULL;
+    while(pl!=r && p_arco!=NULL)
+    {
+        plant=pl;
+        pl=pl->prox;
+    }
+    if(plant!=NULL)
+    {
+        pl->prox=plant->prox;
+        plant->prox=pl;
+    }
+    else
+        *p_arco=pl->prox;
+    return pl;
 }
 
-void transferir_item(void)
+void transferir_arco(void)
 {
-    retirar_item();
     /*TODO: adicionar item retirado na lista de destino..*/
     ;
 }
@@ -132,6 +148,7 @@ void transferir_item(void)
 void criar_arcos(void)
 {
     /*TODO: criar funcao para gerar lista de arcos.*/
+    /*Deve retornar o ponteiro para os arcos.*/
     ;
 }
 

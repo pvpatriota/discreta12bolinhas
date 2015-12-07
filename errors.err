@@ -1,20 +1,22 @@
 ex12.c: In function ‘gerar_entrada’:
-ex12.c:51:12: warning: unused variable ‘cabeca_arcos’ [-Wunused-variable]
-     arcos *cabeca_arcos=NULL;
-            ^
 ex12.c:50:9: warning: unused variable ‘est’ [-Wunused-variable]
      int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
          ^
-ex12.c:47:54: warning: unused parameter ‘p_transicoes’ [-Wunused-parameter]
- void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
-                                                      ^
+ex12.c: In function ‘criar_transicoes’:
+ex12.c:96:36: warning: unused parameter ‘p_transicoes’ [-Wunused-parameter]
+ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos)
+                                    ^
+ex12.c:96:58: warning: unused parameter ‘p_arcos’ [-Wunused-parameter]
+ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos)
+                                                          ^
+ex12.c: In function ‘gerar_entrada’:
 ex12.c:53:5: warning: ‘tr’ is used uninitialized in this function [-Wuninitialized]
      criar_estados(p_estados, tr);
      ^
 ex12.c:54:5: warning: ‘ect’ is used uninitialized in this function [-Wuninitialized]
      for(i=0; i<ect; i++)
      ^
-ex12.c:58:20: warning: ‘aet’ is used uninitialized in this function [-Wuninitialized]
+ex12.c:59:20: warning: ‘aet’ is used uninitialized in this function [-Wuninitialized]
      for(i=0; i<(aet+ate); i++)
                     ^
-ex12.c:58:20: warning: ‘ate’ is used uninitialized in this function [-Wuninitialized]
+ex12.c:59:20: warning: ‘ate’ is used uninitialized in this function [-Wuninitialized]
