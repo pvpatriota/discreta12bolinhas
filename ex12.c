@@ -13,7 +13,7 @@ typedef struct transicoes /*Estrutura para armazenar transicoes.*/
     int ntr; /*Numero da transicao*/
     struct transicoes *prox;
     struct arcos *cabeca;
-}transsicoes;
+}transicoes;
 
 typedef struct arcos /*Estrutura para armazenar arcos*/
 {
@@ -21,7 +21,7 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
     struct arcos *prox;
 }arcos;
 
-void gerar_entrada(void);
+void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(void);
 void criar_estados(void);
 void criar_transicoes(void);
@@ -35,15 +35,16 @@ void relacionar_tokens(void);
 
 int main(void)
 {
-    /*TODO: criar bloco base.*/
-    gerar_entrada();
+    transicoes *cabeca_transicoes = NULL;
+    estados *cabeca_estados = NULL;
+    gerar_entrada(&cabeca_estados, &cabeca_transicoes);
     criar_threads();
     /*TODO: funcao para esperar todas as threads retornarem.*/
     gerar_imagem();
     return 0;
 }
 
-void gerar_entrada(void)
+void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 {
     /*Lembrete! Funcao deve receber ponteiro com cabeca dos estados e ponteiro com cabeca das transicoes.*/
     int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
@@ -70,6 +71,7 @@ void criar_threads(void)
 void criar_estados(void)
 {
     /*TODO: criar funcao para criar os estados da rede de petri.*/
+
     ;
 }
 
@@ -106,7 +108,8 @@ void retirar_item(void)
 
 void transferir_item(void)
 {
-    /*TODO: criar funcao para transferir item de uma lista para outra.*/
+    retirar_item();
+    /*TODO: adicionar item retirado na lista de destino..*/
     ;
 }
 
