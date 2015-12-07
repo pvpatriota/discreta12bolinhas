@@ -39,6 +39,7 @@ int main(void)
     /*TODO: criar bloco base.*/
     gerar_entrada();
     criar_threads();
+    /*TODO: funcao para esperar todas as threads retornarem.*/
     gerar_imagem();
     return 0;
 }
