@@ -100,7 +100,7 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
     {
         p2=malloc(sizeof(transicoes));
         p2->prox=NULL;
-        p2->nt=a1-aux;
+        p2->ntr=a1-aux;
         p2->entram=NULL;
         p2->saem=NULL;
         if(aux!=a1)
@@ -117,7 +117,7 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
     {
         p2=malloc(sizeof(transicoes));
         p2->prox=NULL;
-        p2->nt=a1-aux;
+        p2->ntr=a1-aux;
         p2->entram=NULL;
         p2->saem=NULL;
         if(aux!=a2)

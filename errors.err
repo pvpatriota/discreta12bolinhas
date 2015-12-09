@@ -3,16 +3,13 @@ ex12.c:51:33: warning: unused variable ‘i’ [-Wunused-variable]
      int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
                                  ^
 ex12.c: In function ‘criar_transicoes’:
-ex12.c:95:12: warning: unused variable ‘pl’ [-Wunused-variable]
+ex12.c:96:12: warning: unused variable ‘pl’ [-Wunused-variable]
      arcos *pl=*p_arcos;
             ^
-ex12.c:93:36: warning: unused parameter ‘p_transicoes’ [-Wunused-parameter]
- void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
-                                    ^
 ex12.c: In function ‘transferir_arco’:
-ex12.c:139:12: warning: variable ‘r’ set but not used [-Wunused-but-set-variable]
+ex12.c:163:12: warning: variable ‘r’ set but not used [-Wunused-but-set-variable]
      arcos *r;
             ^
-ex12.c:137:50: warning: unused parameter ‘p_transicao’ [-Wunused-parameter]
+ex12.c:161:50: warning: unused parameter ‘p_transicao’ [-Wunused-parameter]
  void transferir_arco(arcos **p_arco, transicoes *p_transicao)
                                                   ^
