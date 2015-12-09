@@ -30,10 +30,11 @@ void gerar_imagem(void);
 void procurar(void);
 void enviar_tokens(void);
 arcos *retirar_arco(arcos **p_arco);
-void transferir_item(void);
+void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2);
 void criar_arcos(arcos **p_arcos, int a1, int a2);
 void relacionar_tokens(estados *p_estados, int num);
 estados *procurar_estado(estados *p_estados, int num);
+transicoes *procurar_transicao(transicoes *p_transicoes, int num);
 
 int main(void)
 {
@@ -129,11 +130,7 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
         }
         aux--;
     }
-    while(a1+a2)
-    {
-        /*TODO: relacionar arcos com transicoes.*/
-    }
-    ;
+    transferir_arco(p_arcos, *p_transicoes, a1, a2);
 }
 
 void gerar_imagem(void)
@@ -158,12 +155,34 @@ arcos *retirar_arco(arcos **p_arco)
     return pl;
 }
 
-void transferir_arco(arcos **p_arco, transicoes *p_transicao)
+void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
 {
-    arcos *r;
-    transicoes *pl=p_transicao;
-    r=retirar_arco(p_arco);
-
+    arcos *r, *aux;
+    transicoes *pl;
+    while(a1)
+    {
+        *pl=*p_transicao;
+        r=retirar_arco(p_arco);
+        while(r->origem!=pl->ntr)
+            pl=pl->prox;
+        aux=pl->entram;
+        while(aux->prox!=NULL)
+            aux=aux->prox;
+        aux=r;
+        a1--;
+    }
+    while(a2)
+    {
+        *pl=*p_transicao;
+        r=retirar_arco(p_arco);
+        while(r->destino!=pl->ntr)
+            pl=pl->prox;
+        aux=pl->saem;
+        while(aux->prox!=NULL)
+            aux=aux->prox;
+        aux=r;
+        a2--;
+    }
 }
 
 void criar_arcos(arcos **p_arcos, int a1, int a2)
