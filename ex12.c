@@ -33,6 +33,7 @@ arcos *retirar_arco(arcos **p_arco);
 void transferir_item(void);
 void criar_arcos(arcos **p_arcos, int a1, int a2);
 void relacionar_tokens(void);
+void procurar_estado(void);
 
 int main(void)
 {
@@ -163,6 +164,12 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
         pl=pl->prox=NULL;
         a1--;
     }
+}
+
+void procurar_estado(void)
+{
+    /*TODO: criar funcao para procurar estado.*/
+    ;
 }
 
 void relacionar_tokens(void)
