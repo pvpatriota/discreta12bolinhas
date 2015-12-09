@@ -49,7 +49,11 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 {
     int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
     arcos *cabeca_arcos=NULL;
-    /*TODO: ler linhas estaticas*/
+    scanf("%d", &est); /*Lendo cinco linhas iniciais do arquivo de entrada.*/
+    scanf("%d", &tr);
+    scanf("%d", &ect);
+    scanf("%d", &aet);
+    scanf("%d", &ate);
     criar_estados(p_estados, tr);
     for(i=0; i<ect; i++)
     {
