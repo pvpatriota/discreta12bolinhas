@@ -25,7 +25,7 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(void);
 void criar_estados(estados **p_estados, int num);
-void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos);
+void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2);
 void gerar_imagem(void);
 void procurar(void);
 void enviar_tokens(void);
@@ -61,7 +61,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
         relacionar_tokens();
     }
     criar_arcos(&cabeca_arcos, est, tr);
-    criar_transicoes(p_transicoes, &cabeca_arcos);
+    criar_transicoes(p_transicoes, &cabeca_arcos, aet, ate);
 }
 
 void criar_threads(void)
@@ -93,7 +93,7 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
     }
 }
 
-void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos)
+void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
 {
     /*TODO: criar funcao para criar as transicoes da rede de petri.*/
     /*TODO: relacionar arcos com as transicoes.*/
