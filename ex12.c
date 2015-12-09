@@ -95,8 +95,23 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
 
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
 {
-    /*TODO: criar funcao para criar as transicoes da rede de petri.*/
-    /*TODO: relacionar arcos com as transicoes.*/
+    transicoes *pl=*p_arcos;
+    int aux=a1;
+    while(aux)
+    {
+        /*TODO: ler transicoes estado->arco.*/
+        aux--;
+    }
+    aux=a2;
+    while(aux)
+    {
+        /*TODO: ler transicoes arco->estado.*/
+        aux--;
+    }
+    while(a1+a2)
+    {
+        /*TODO: relacionar arcos com transicoes.*/
+    }
     ;
 }
 
