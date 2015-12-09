@@ -1,8 +1,0 @@
-ex12.c: In function ‘gerar_entrada’:
-ex12.c:52:33: warning: unused variable ‘i’ [-Wunused-variable]
-     int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
-                                 ^
-ex12.c: In function ‘criar_transicoes’:
-ex12.c:97:12: warning: unused variable ‘pl’ [-Wunused-variable]
-     arcos *pl=*p_arcos;
-            ^
