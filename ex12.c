@@ -166,10 +166,16 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
     }
 }
 
-void procurar_estado(void)
+estados *procurar_estado(estados *p_estados, int num)
 {
-    /*TODO: criar funcao para procurar estado.*/
-    ;
+   estados *pl=p_estados;
+   while(pl!=NULL)
+   {
+       if(pl->ne==num)
+           return pl;
+       pl=pl->prox;
+   }
+   return pl;
 }
 
 void relacionar_tokens(void)
