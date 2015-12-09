@@ -1,17 +1,17 @@
 ex12.c: In function ‘criar_transicoes’:
-ex12.c:98:20: warning: initialization from incompatible pointer type
+ex12.c:99:20: warning: initialization from incompatible pointer type
      transicoes *pl=*p_arcos;
                     ^
-ex12.c:98:17: warning: unused variable ‘pl’ [-Wunused-variable]
+ex12.c:99:17: warning: unused variable ‘pl’ [-Wunused-variable]
      transicoes *pl=*p_arcos;
                  ^
-ex12.c:96:36: warning: unused parameter ‘p_transicoes’ [-Wunused-parameter]
+ex12.c:97:36: warning: unused parameter ‘p_transicoes’ [-Wunused-parameter]
  void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
                                     ^
 ex12.c: In function ‘transferir_arco’:
-ex12.c:142:12: warning: variable ‘r’ set but not used [-Wunused-but-set-variable]
+ex12.c:143:12: warning: variable ‘r’ set but not used [-Wunused-but-set-variable]
      arcos *r;
             ^
-ex12.c:140:50: warning: unused parameter ‘p_transicao’ [-Wunused-parameter]
+ex12.c:141:50: warning: unused parameter ‘p_transicao’ [-Wunused-parameter]
  void transferir_arco(arcos **p_arco, transicoes *p_transicao)
                                                   ^

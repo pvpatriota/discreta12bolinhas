@@ -32,8 +32,8 @@ void enviar_tokens(void);
 arcos *retirar_arco(arcos **p_arco);
 void transferir_item(void);
 void criar_arcos(arcos **p_arcos, int a1, int a2);
-void relacionar_tokens(void);
-void procurar_estado(void);
+void relacionar_tokens(estados *p_estados, int num);
+estados *procurar_estado(estados *p_estados, int num);
 
 int main(void)
 {
@@ -178,9 +178,16 @@ estados *procurar_estado(estados *p_estados, int num)
    return pl;
 }
 
-void relacionar_tokens(void)
+void relacionar_tokens(estados *p_estados, int num)
 {
-    /*TODO: criar funcao para relacionar os tokens da entrada com os seus respectivos estados.*/
-    ;
+    int est, tok; /*Estado e token.*/
+    estados *pl=NULL;
+    while(num)
+    {
+        scanf("%d %d", &est, &tok);
+        pl=procurar_estado(p_estados, est);
+        pl->nt=tok;
+        num--;
+    }
 }
 
