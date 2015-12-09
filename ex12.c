@@ -49,7 +49,6 @@ int main(void)
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 {
-    /*Lembrete! Funcao deve receber ponteiro com cabeca dos estados e ponteiro com cabeca das transicoes.*/
     int est, tr, ect, aet, ate, i; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
     arcos *cabeca_arcos=NULL;
     /*TODO: ler linhas estaticas*/
@@ -117,7 +116,7 @@ void criar_threads(void)
     ;
 }
 
-void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criacao dos arcos*/
+void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criacao dos estados.*/
 {
     int i=0;
     estados *pl=NULL;
@@ -179,7 +178,7 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao)
     }
 }
 
-void criar_arcos(arcos **p_arcos, int a1, int a2) /*TODO: Função para criar os arcos*/
+void criar_arcos(arcos **p_arcos, int a1, int a2)
 {
     arcos *pl=*p_arcos;
     int x, y, z, aux=a1;
