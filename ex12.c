@@ -78,7 +78,7 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
         pl->ne=i;
         pl->nt=0;
         pl->prox=NULL;
-        if(plant!=NULL)
+        if(plant!=NULL)  /*Pode ser otimizado! Variavel plant nao e necessaria.*/
         {
             plant->prox=pl;
             pl=pl->prox;
@@ -86,6 +86,7 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
         else
         {
             *p_estados=pl;
+            pl=pl->prox;
         }
     }
 }
@@ -93,16 +94,39 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
 {
     arcos *pl=*p_arcos;
+    transicoes *p2=*p_transicoes;
     int aux=a1;
     while(aux)
     {
-        /*TODO: ler transicoes estado->arco.*/
+        p2=malloc(sizeof(transicoes));
+        p2->prox=NULL;
+        p2->nt=a1-aux;
+        p2->entram=NULL;
+        p2->saem=NULL;
+        if(aux!=a1)
+            p2=p2->prox;
+        else
+        {
+            *p_transicoes=p2;
+            p2=p2->prox;
+        }
         aux--;
     }
     aux=a2;
     while(aux)
     {
-        /*TODO: ler transicoes arco->estado.*/
+        p2=malloc(sizeof(transicoes));
+        p2->prox=NULL;
+        p2->nt=a1-aux;
+        p2->entram=NULL;
+        p2->saem=NULL;
+        if(aux!=a2)
+            p2=p2->prox;
+        else
+        {
+            *p_transicoes=p2;
+            p2=p2->prox;
+        }
         aux--;
     }
     while(a1+a2)
