@@ -2,6 +2,15 @@
 #include <pthread.h>
 #include <stdlib.h>
 
+#ifndef DEBUG
+#define DEBUG 0 
+#endif
+
+#ifndef MAX
+#define MAX 1000 /*Define Valor maximo para interações e transições*/
+#endif
+
+
 typedef struct estados /*Estrutura para armazenar estados.*/
 {
     int ne, nt; /*Numero do estado e numero de tokens, respectivamente.*/
