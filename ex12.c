@@ -64,6 +64,36 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
     scanf("%d", &ect);
     scanf("%d", &aet);
     scanf("%d", &ate);
+    if(DEBUG>1) printf("Quantidade de estados: %u\n", est);
+    if(est>MAX)
+    {
+        printf("ERROR - Quantidade de estados excedem o máximo permitido");
+        return -1;
+    }
+    if(DEBUG>0) printf("Quantidade de transicoes: %u\n",tr);
+    if(tr>MAX)
+    {
+        printf("ERROR - Quantidade de transicoes excedem o maximo permitido");
+        return -1;
+    }
+    if(DEBUG>0) printf("Quantidade de estados que possuem token: %u\n",ect);
+    if(ect>MAX)
+    {
+        printf("ERROR - A quantidade de estados com token excedeu o maximo permitido");
+        return -1;
+    }
+    if(DEBUG>0) printf("Quantidade de arcos que interligam estados e transicoes: %u\n",aet);
+    if(aet>MAX)
+    {
+        printf("ERROR - A quantidade dos arcos que interligam estados com transicoes execedeu o limite permitido");
+        return -1;
+    }
+    if(DEBUG>0) printf("Quantidade de arcos que interligam transicoes com estados: %u\n",ate);
+    if(ate>MAX)
+    {
+        printf("ERROR - A quantidade dos arcos que interligam as transicoes com os estados excederam o limite permitido");
+        return-1;
+    }
     criar_estados(p_estados, tr);
     relacionar_tokens(*p_estados, ect);
     criar_arcos(&cabeca_arcos, est, tr);
@@ -83,6 +113,7 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
     estados *plant=NULL;
     for(; i<num; i++)
     {
+        if(DEBUG>0) printf("Criando estados %u de %u",i,num);
         pl=malloc(sizeof(estados));
         pl->ne=i;
         pl->nt=0;
