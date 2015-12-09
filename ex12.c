@@ -2,8 +2,6 @@
 #include <pthread.h>
 #include <stdlib.h>
 
-#define NMT 20
-
 typedef struct estados /*Estrutura para armazenar estados.*/
 {
     int ne, nt; /*Numero do estado e numero de tokens, respectivamente.*/
@@ -64,54 +62,6 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 
 void criar_threads(void)
 {
-    ptread_t threads[NMT];
-
-    if(pthread_create(&threads[0], NULL, criar_estados, (estados **p_estados)))
-    {
-        printf("Não foi possível criar a thread");
-        return -1;
-    }
-    if(pthread_crate(&threads[1], NULL, criar_transicoes, (transicoes **p_transicoes)))
-    {
-        printf("Não foi possivel criar a thread");
-        return -1;
-    }
-    if(pthread_create(&threads[2], NULL, gerar_imagem, (void *)))
-    {
-        printf("Não foi possivel criar a thread");
-        return -1;
-    }
-    if(pthread_create(&threads[3], NULL, procurar, (void *)))
-    {
-        printf("Não foi possivel criar a thread");
-        return -1;
-    }
-    if(pthread_create(&threads[4], NULL, enviar_tokens, (void *)))
-    {
-        printf("Nao foi possivel criar a thread");
-        return -1;
-    }
-    if(pthread_create(&threads[5], NULL, arcos *retirar_arco, (** p_arco)))
-    {
-        printf("Nao foi possivel criar a thread");
-        return -1;
-    }
-    if(pthread_create(&threads[6], NULL, transferir_item, (void *)))
-    {
-        printf("Nao foi possivel criar a thread");
-        return -1;
-    }
-    if(pthread_create(&threads[7], NULL, criar_arcos, (void *)arcos **p_arcos))
-    {
-        printf("Nao foi possivel criar a thread");
-        return -1;
-    }
-    if(pthread_create(&threads[8], NULL, relacionar_tokens, (void *)))
-    {
-        printf("Nao foi possivel criar a thread");
-        return -1;
-    }
-            
     /*TODO: criar funcao para criar threads.*/
     ;
 }
