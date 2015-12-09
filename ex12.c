@@ -198,8 +198,14 @@ estados *procurar_estado(estados *p_estados, int num)
 
 transicoes *procurar_transicao(transicoes *p_transicoes, int num)
 {
-    /*TODO: funcao para procurar transicoes.*/
-    ;
+    transicoes *pl=p_transicoes;
+    while(pl!=NULL)
+    {
+        if(pl->ntr==num)
+            return pl;
+        pl=pl->prox;
+    }
+    return pl;
 }
 
 void relacionar_tokens(estados *p_estados, int num)
