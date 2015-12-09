@@ -56,11 +56,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
     scanf("%d", &aet);
     scanf("%d", &ate);
     criar_estados(p_estados, tr);
-    for(i=0; i<ect; i++)
-    {
-        /*Este for deve estar dentro da funcao relacionar_tokens.*/
-        relacionar_tokens();
-    }
+    relacionar_tokens(*p_estados, ect);
     criar_arcos(&cabeca_arcos, est, tr);
     criar_transicoes(p_transicoes, &cabeca_arcos, aet, ate);
 }
@@ -96,7 +92,7 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
 
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
 {
-    transicoes *pl=*p_arcos;
+    arcos *pl=*p_arcos;
     int aux=a1;
     while(aux)
     {
