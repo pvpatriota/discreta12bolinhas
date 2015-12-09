@@ -161,11 +161,9 @@ arcos *retirar_arco(arcos **p_arco)
 void transferir_arco(arcos **p_arco, transicoes *p_transicao)
 {
     arcos *r;
-    while(p_arco!=NULL)
-    {
-        r=retirar_arco(p_arco);
-        /*TODO: colocar r na transicao que ele esta ligado.*/
-    }
+    transicoes *pl=p_transicao;
+    r=retirar_arco(p_arco);
+
 }
 
 void criar_arcos(arcos **p_arcos, int a1, int a2)
@@ -196,6 +194,12 @@ estados *procurar_estado(estados *p_estados, int num)
        pl=pl->prox;
    }
    return pl;
+}
+
+transicoes *procurar_transicao(transicoes *p_transicoes, int num)
+{
+    /*TODO: funcao para procurar transicoes.*/
+    ;
 }
 
 void relacionar_tokens(estados *p_estados, int num)
