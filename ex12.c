@@ -123,7 +123,7 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
 
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
 {
-    transicoes *pl=*p_transicoes;
+    transicoes *pl=*p_transicoes, *plant;
     int aux=a1;
     while(aux)
     {
@@ -133,10 +133,15 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
         pl->entram=NULL;
         pl->saem=NULL;
         if(aux!=a1)
+        {
+            plant->prox=pl;
+            plant=pl;
             pl=pl->prox;
+        }
         else
         {
-            *p_transicoes=p2;
+            *p_transicoes=pl;
+            plant=pl;
             pl=pl->prox;
         }
         aux--;
@@ -150,14 +155,21 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
         pl->entram=NULL;
         pl->saem=NULL;
         if(aux!=a2)
+        {
+            plant->prox=pl;
+            plant=pl;
             pl=pl->prox;
+        }
         else
         {
             *p_transicoes=pl;
+            plant=pl;
             pl=pl->prox;
         }
         aux--;
     }
+    if(DEBUG)
+        printf("Iniciando transferencia de arcos.\n");
     transferir_arco(p_arcos, *p_transicoes, a1, a2);
 }
 
@@ -175,22 +187,34 @@ void enviar_tokens(void)
 
 arcos *retirar_arco(arcos **p_arco)
 {
+    if(DEBUG)
+        printf("Entrando na funcao retirar_arco.\n");
     arcos *pl=*p_arco;
-    if(pl==NULL)
-        return pl;
+    printf("oie\n");
+    /*if(pl==NULL)
+        return pl;*/
     *p_arco=pl->prox;
-    pl->prox=NULL;
+    printf("O erro esta aqui.\n");
+    if(DEBUG)
+        printf("Terminando a funcao retirar_arco.\n");
     return pl;
 }
 
 void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
 {
+    if(DEBUG)
+        printf("Iniciando funcao transferir_arco.\n");
     arcos *r, *aux;
     transicoes *pl;
     while(a1)
     {
-        *pl=*p_transicao;
+        printf("asdfçlks\n");
         r=retirar_arco(p_arco);
+        pl=procurar_transicao(p_transicao, r->origem);
+        printf("asjdfksal\n");
+        /*r=retirar_arco(p_arco);*/
+        if(DEBUG)
+            printf("Inciando tranferencia do arco com origem no estado %d e detino na transicao %d.\n", r->origem, r->destino);
         while(r->origem!=pl->ntr)
             pl=pl->prox;
         aux=pl->entram;
@@ -215,18 +239,31 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
 
 void criar_arcos(arcos **p_arcos, int a1, int a2)
 {
-    arcos *pl=*p_arcos;
+    if(DEBUG)
+        printf("Iniciando funcao criar_arcos.\n");
+    arcos *pl=*p_arcos, *plant;
     int x, y, z, aux=a1;
-    while((a1+a2)>0)
+    while(a1+a2)
     {
+        if(DEBUG)
+            printf("A1+A2=%d.\n", a1+a2);
         pl=malloc(sizeof(arcos));
         scanf("%d %d %d", &x, &y, &z);
         pl->origem=x;
         pl->destino=z;
         pl->custo=y;
+        pl->prox=NULL;
         if(aux==a1)
-            *p_arcos=pl;
-        pl=pl->prox=NULL;
+        {
+            plant->prox=pl;
+            plant=pl;
+            pl=pl->prox;
+        }
+        else
+        {
+            plant->prox=pl;
+            plant=pl;
+        }
         a1--;
     }
 }
