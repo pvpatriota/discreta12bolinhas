@@ -2,14 +2,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 
-#ifndef DEBUG
-#define DEBUG 0 
-#endif
-
-#ifndef MAX
-#define MAX 1000 /*Define Valor maximo para interações e transições*/
-#endif
-
+#define DEBUG 1
 
 typedef struct estados /*Estrutura para armazenar estados.*/
 {
@@ -65,40 +58,28 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
     scanf("%d", &ect);
     scanf("%d", &aet);
     scanf("%d", &ate);
-    if(DEBUG>1) printf("Quantidade de estados: %u\n", est);
-    if(est>MAX)
-    {
-        printf("ERROR - Quantidade de estados excedem o máximo permitido");
-        return -1;
-    }
-    if(DEBUG>0) printf("Quantidade de transicoes: %u\n",tr);
-    if(tr>MAX)
-    {
-        printf("ERROR - Quantidade de transicoes excedem o maximo permitido");
-        return -1;
-    }
-    if(DEBUG>0) printf("Quantidade de estados que possuem token: %u\n",ect);
-    if(ect>MAX)
-    {
-        printf("ERROR - A quantidade de estados com token excedeu o maximo permitido");
-        return -1;
-    }
-    if(DEBUG>0) printf("Quantidade de arcos que interligam estados e transicoes: %u\n",aet);
-    if(aet>MAX)
-    {
-        printf("ERROR - A quantidade dos arcos que interligam estados com transicoes execedeu o limite permitido");
-        return -1;
-    }
-    if(DEBUG>0) printf("Quantidade de arcos que interligam transicoes com estados: %u\n",ate);
-    if(ate>MAX)
-    {
-        printf("ERROR - A quantidade dos arcos que interligam as transicoes com os estados excederam o limite permitido");
-        return-1;
-    }
-    criar_estados(p_estados, tr);
+    if(DEBUG) 
+        printf("Quantidade de estados: %u\n", est);
+    if(DEBUG) 
+        printf("Quantidade de transicoes: %u\n",tr);
+    if(DEBUG) 
+        printf("Quantidade de estados que possuem token: %u\n",ect);
+    if(DEBUG) 
+        printf("Quantidade de arcos que interligam estados e transicoes: %u\n",aet);
+    if(DEBUG) 
+        printf("Quantidade de arcos que interligam transicoes com estados: %u\n",ate);
+    criar_estados(p_estados, est);
+    if(DEBUG)
+        printf("Funcao criar_estados funcionando.\n");
     relacionar_tokens(*p_estados, ect);
+    if(DEBUG)
+        printf("Funcao relacionar_tokens funcionando.\n");
     criar_arcos(&cabeca_arcos, est, tr);
+    if(DEBUG)
+        printf("Funcao criar_arcos funcionando.\n");
     criar_transicoes(p_transicoes, &cabeca_arcos, aet, ate);
+    if(DEBUG)
+        printf("Funcao criar_transicoes funcionando.\n");
 }
 
 void criar_threads(void)
@@ -109,24 +90,32 @@ void criar_threads(void)
 
 void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criacao dos estados.*/
 {
+    if(DEBUG)
+        printf("Iniciando criacao de estados, ira rodar por %d vezes.\n", num);
     int i=0;
-    estados *pl=NULL;
-    estados *plant=NULL;
+    estados *pl, *plant;
     for(; i<num; i++)
     {
-        if(DEBUG>0) printf("Criando estados %u de %u",i,num);
+        if(DEBUG)
+            printf("Criando estado %d\n", i);
         pl=malloc(sizeof(estados));
         pl->ne=i;
         pl->nt=0;
         pl->prox=NULL;
-        if(plant!=NULL)  /*Pode ser otimizado! Variavel plant nao e necessaria.*/
+        if(i!=0)
         {
+            if(DEBUG)
+                printf("i!=0 Criacao do estado %d realizada com sucesso.\n", pl->ne);
             plant->prox=pl;
+            plant=pl;
             pl=pl->prox;
         }
         else
         {
             *p_estados=pl;
+            if(DEBUG)
+                printf("i=0 Criacao do estado %d realizada com sucesso.\n", pl->ne);
+            plant=pl;
             pl=pl->prox;
         }
     }
@@ -134,38 +123,38 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
 
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
 {
-    transicoes *p2=*p_transicoes;
+    transicoes *pl=*p_transicoes;
     int aux=a1;
     while(aux)
     {
-        p2=malloc(sizeof(transicoes));
-        p2->prox=NULL;
-        p2->ntr=a1-aux;
-        p2->entram=NULL;
-        p2->saem=NULL;
+        pl=malloc(sizeof(transicoes));
+        pl->prox=NULL;
+        pl->ntr=a1-aux;
+        pl->entram=NULL;
+        pl->saem=NULL;
         if(aux!=a1)
-            p2=p2->prox;
+            pl=pl->prox;
         else
         {
             *p_transicoes=p2;
-            p2=p2->prox;
+            pl=pl->prox;
         }
         aux--;
     }
     aux=a2;
     while(aux)
     {
-        p2=malloc(sizeof(transicoes));
-        p2->prox=NULL;
-        p2->ntr=a1-aux;
-        p2->entram=NULL;
-        p2->saem=NULL;
+        pl=malloc(sizeof(transicoes));
+        pl->prox=NULL;
+        pl->ntr=a1-aux;
+        pl->entram=NULL;
+        pl->saem=NULL;
         if(aux!=a2)
-            p2=p2->prox;
+            pl=pl->prox;
         else
         {
-            *p_transicoes=p2;
-            p2=p2->prox;
+            *p_transicoes=pl;
+            pl=pl->prox;
         }
         aux--;
     }
@@ -244,14 +233,28 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
 
 estados *procurar_estado(estados *p_estados, int num)
 {
-   estados *pl=p_estados;
-   while(pl!=NULL)
-   {
-       if(pl->ne==num)
-           return pl;
-       pl=pl->prox;
-   }
-   return pl;
+    if(DEBUG)
+        printf("Iniciando funcao procurar_estado.\n");
+    estados *pl=p_estados;
+    if(DEBUG)
+        printf("Estamos no estado %d.\n", pl->ne);
+    while(pl!=NULL)
+    {
+        if(DEBUG)
+            printf("O numero do estado sendo procurado e: %d. Estamos no estado: %d.\n", num, pl->ne);
+        if(pl->ne==num)
+        {
+            if(DEBUG)
+                printf("Estado %d encontrado.\n", pl->ne);
+            return pl;
+        }
+        if(DEBUG)
+            printf("Estamos no estado %d.\n", pl->ne);
+        pl=pl->prox;
+    }
+    if(DEBUG)
+        printf("Retornando nulo.\n");
+    return pl;
 }
 
 transicoes *procurar_transicao(transicoes *p_transicoes, int num)
@@ -269,12 +272,20 @@ transicoes *procurar_transicao(transicoes *p_transicoes, int num)
 void relacionar_tokens(estados *p_estados, int num)
 {
     int est, tok; /*Estado e token.*/
-    estados *pl=NULL;
+    estados *pl;
     while(num)
     {
+        if(DEBUG)
+            printf("Entrando na funcao relacionar_tokens.\n");
         scanf("%d %d", &est, &tok);
+        if(DEBUG)
+            printf("O estado %d tem %d tokens.\n", est, tok);
         pl=procurar_estado(p_estados, est);
+        if(DEBUG)
+            printf("O resultado da funcao procurar_estado encontrou: %d\n", pl->ne);
         pl->nt=tok;
+        if(DEBUG)
+            printf("Colocando %d tokens no estado %d.\n", pl->nt, pl->ne);
         num--;
     }
 }
