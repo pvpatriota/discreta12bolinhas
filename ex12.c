@@ -190,13 +190,10 @@ arcos *retirar_arco(arcos **p_arco)
     if(DEBUG)
         printf("Entrando na funcao retirar_arco.\n");
     arcos *pl=*p_arco;
-    printf("oie\n");
-    /*if(pl==NULL)
-        return pl;*/
     *p_arco=pl->prox;
-    printf("O erro esta aqui.\n");
     if(DEBUG)
-        printf("Terminando a funcao retirar_arco.\n");
+        if(pl!=NULL)
+            printf("Terminando a funcao retirar_arco com sucesso.\nArco encontrado vai de %d a %d.\n", pl->origem, pl->destino);
     return pl;
 }
 
@@ -208,19 +205,21 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
     transicoes *pl;
     while(a1)
     {
-        printf("asdfçlks\n");
         r=retirar_arco(p_arco);
-        pl=procurar_transicao(p_transicao, r->origem);
-        printf("asjdfksal\n");
-        /*r=retirar_arco(p_arco);*/
+        if(DEBUG)
+            printf("Arco com origem em %d e destino em %d.\n", r->origem, r->destino);
+        pl=procurar_transicao(p_transicao, r->destino);
+        if(DEBUG)
+            if(pl->ntr==r->destino)
+                printf("Transicao encontrada.\n");
         if(DEBUG)
             printf("Inciando tranferencia do arco com origem no estado %d e detino na transicao %d.\n", r->origem, r->destino);
-        while(r->origem!=pl->ntr)
-            pl=pl->prox;
         aux=pl->entram;
-        while(aux->prox!=NULL)
-            aux=aux->prox;
+        if(aux!=NULL)
+            while(aux->prox!=NULL)
+                aux=aux->prox;
         aux=r;
+        /*TODO: resolver problema de segundo arco na mesma transicao.*/
         a1--;
     }
     while(a2)
@@ -253,7 +252,7 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
         pl->destino=z;
         pl->custo=y;
         pl->prox=NULL;
-        if(aux==a1)
+        if(aux!=a1)
         {
             plant->prox=pl;
             plant=pl;
@@ -261,8 +260,9 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
         }
         else
         {
-            plant->prox=pl;
-            plant=pl;
+            *p_arcos=pl;
+            plant=*p_arcos;
+            pl=pl->prox;
         }
         a1--;
     }
