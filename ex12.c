@@ -36,7 +36,7 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(void);
 void criar_estados(estados **p_estados, int num);
-void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2);
+void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
 void gerar_imagem();
 void procurar(void);
 void enviar_tokens(estados *e1, estados *e2, int num);
@@ -89,7 +89,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
     criar_arcos(&cabeca_arcos, aet, ate);
     if(DEBUG)
         printf("Funcao criar_arcos funcionando.\n");
-    criar_transicoes(p_transicoes, &cabeca_arcos, aet, ate);
+    criar_transicoes(p_transicoes, &cabeca_arcos, aet, ate, tr);
     if(DEBUG)
         printf("Funcao criar_transicoes funcionando.\n");
 }
@@ -135,42 +135,20 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
         printf("Fim da funcao criar_estados.\n");
 }
 
-void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
+void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num)
 {
     transicoes *pl=*p_transicoes, *plant;
-    int aux=a1;
+    int aux=num;
     if(DEBUG)
         printf("Inicio da funcao criar_transicoes.\n");
     while(aux)
     {
         pl=malloc(sizeof(transicoes));
         pl->prox=NULL;
-        pl->ntr=a1-aux;
+        pl->ntr=num-aux;
         pl->entram=NULL;
         pl->saem=NULL;
-        if(aux!=a1)
-        {
-            plant->prox=pl;
-            plant=pl;
-            pl=pl->prox;
-        }
-        else
-        {
-            *p_transicoes=pl;
-            plant=pl;
-            pl=pl->prox;
-        }
-        aux--;
-    }
-    aux=a2;
-    while(aux)
-    {
-        pl=malloc(sizeof(transicoes));
-        pl->prox=NULL;
-        pl->ntr=a2-aux;
-        pl->entram=NULL;
-        pl->saem=NULL;
-        if(aux!=a2)
+        if(aux!=num)
         {
             plant->prox=pl;
             plant=pl;
@@ -221,8 +199,8 @@ void gerar_imagem(void)
 
 void enviar_tokens(estados *e1, estados *e2, int num)
 {
-    /*TODO: criar funcao para transicao enviar tokens.*/
-    ;
+    e1->nt-=num;
+    e2->nt+=num;
 }
 
 arcos *retirar_arco(arcos **p_arco)
@@ -368,7 +346,6 @@ transicoes *procurar_transicao(transicoes *p_transicoes, int num)
             printf("procurar_transicao: pl = NULL.\n");
     while(pl!=NULL)
     {
-        printf("1\n");
         if(pl->ntr==num)
             return pl;
         pl=pl->prox;
