@@ -119,12 +119,16 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
             pl=pl->prox;
         }
     }
+    if(DEBUG)
+        printf("Fim da funcao criar_estados.\n");
 }
 
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2)
 {
     transicoes *pl=*p_transicoes, *plant;
     int aux=a1;
+    if(DEBUG)
+        printf("Inicio da funcao criar_transicoes.\n");
     while(aux)
     {
         pl=malloc(sizeof(transicoes));
@@ -171,6 +175,8 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
     if(DEBUG)
         printf("Iniciando transferencia de arcos.\n");
     transferir_arco(p_arcos, *p_transicoes, a1, a2);
+    if(DEBUG)
+        printf("Fim da funcao criar_transicoes.\n");
 }
 
 void gerar_imagem(void)
@@ -251,6 +257,8 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
         aux=r;
         a2--;
     }
+    if(DEBUG)
+        printf("Fim da funcao transferir_arco.\n");
 }
 
 void criar_arcos(arcos **p_arcos, int a1, int a2)
@@ -283,6 +291,8 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
         }
         a1--;
     }
+    if(DEBUG)
+        printf("Fim da funcao criar_arcos.\n");
 }
 
 estados *procurar_estado(estados *p_estados, int num)
@@ -307,7 +317,7 @@ estados *procurar_estado(estados *p_estados, int num)
         pl=pl->prox;
     }
     if(DEBUG)
-        printf("Retornando nulo.\n");
+        printf("Funcao procurar_estado retornando nulo.\n");
     return pl;
 }
 
