@@ -229,13 +229,25 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
     }
     while(a2)
     {
-        *pl=*p_transicao;
         r=retirar_arco(p_arco);
-        while(r->destino!=pl->ntr)
-            pl=pl->prox;
+        if(DEBUG)
+            printf("Arco com origem em %d e destino em %d.\n", r->origem, r->origem);
+        pl=procurar_transicao(p_transicao, r->origem);
+        if(DEBUG)
+            if(pl->ntr==r->origem)
+                printf("Transicao encontrada.\n");
+        if(DEBUG)
+            printf("Inciando tranferencia do arco com origem no estado %d e destino na transicao %d.\n", r->origem, r->destino);
         aux=pl->saem;
-        while(aux->prox!=NULL)
-            aux=aux->prox;
+        if(aux!=NULL)
+        {
+            while(aux!=NULL)
+            {
+                plant=aux;
+                aux=aux->prox;
+            }
+            aux=plant;
+        }
         aux=r;
         a2--;
     }
