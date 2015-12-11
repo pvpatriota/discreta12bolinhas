@@ -1,0 +1,21 @@
+ex12.c: In function ‘gerar_imagem’:
+ex12.c:205:33: error: ‘CORAMARELO’ undeclared (first use in this function)
+     circle(buff, 160, 120, 100, CORAMARELO);
+                                 ^
+ex12.c:205:33: note: each undeclared identifier is reported only once for each function it appears in
+ex12.c:206:18: error: ‘points’ undeclared (first use in this function)
+     spline(buff, points, CORVERMELHO);
+                  ^
+ex12.c:206:26: error: ‘CORVERMELHO’ undeclared (first use in this function)
+     spline(buff, points, CORVERMELHO);
+                          ^
+ex12.c:207:39: error: ‘CORVERDE’ undeclared (first use in this function)
+     textprintf_ex(buff, font, 50, 50, CORVERDE, CORPRETO, "Teste do circulo.");
+                                       ^
+ex12.c:207:49: error: ‘CORPRETO’ undeclared (first use in this function)
+     textprintf_ex(buff, font, 50, 50, CORVERDE, CORPRETO, "Teste do circulo.");
+                                                 ^
+ex12.c: At top level:
+ex12.c:220:1: error: expected identifier or ‘(’ before ‘}’ token
+ }
+ ^

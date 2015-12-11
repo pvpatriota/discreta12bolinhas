@@ -5,6 +5,13 @@
 
 #define DEBUG 1
 #define IMAGENAME "ex12.bmp"
+#define CORBRANCO (makecol(255,255,255))
+#define CORPRETO 1
+#define CORCINZA (makecol(160,160,160))
+#define CORAZUL (makecol(0, 0, 255))
+#define CORVERDE (makecol(0, 255, 0))
+#define CORAMARELO (makecol(255,255,100))
+#define CORVERMELHO (makecol(255, 0, 0))
 
 typedef struct estados /*Estrutura para armazenar estados.*/
 {
