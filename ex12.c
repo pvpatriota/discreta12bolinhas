@@ -39,7 +39,7 @@ typedef struct tadt
 }tadt;
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
-void criar_threads(void);
+void criar_threads(tadt *p_threads);
 void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
 void gerar_imagem();
@@ -55,12 +55,13 @@ void debug(estados *p_estados, transicoes *p_transicoes);
 
 int main(void)
 {
-    transicoes *cabeca_transicoes = NULL;
-    estados *cabeca_estados = NULL;
+    transicoes *cabeca_transicoes=NULL;
+    estados *cabeca_estados=NULL;
+    tadt *cabeca_threads=NULL;
     gerar_entrada(&cabeca_estados, &cabeca_transicoes);
     if(DEBUG)
         debug(cabeca_estados, cabeca_transicoes);
-    criar_threads();
+    criar_threads(cabeca_threads);
     /*TODO: funcao para esperar todas as threads retornarem.*/
     gerar_imagem();
     return 0;
@@ -99,7 +100,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
         printf("Funcao criar_transicoes funcionando.\n");
 }
 
-void criar_threads()
+void criar_threads(tadt *p_threads)
 {
     /*TODO: criar funcao para criar threads.*/
     ;
