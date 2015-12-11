@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <allegro.h>
 
-#define DEBUG 1
+#define DEBUG 0
 #define IMAGENAME "ex12.bmp"
 #define CORBRANCO (makecol(255,255,255))
 #define CORPRETO 1
@@ -32,6 +32,11 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
     int origem, destino, custo; /*ponto de origem, destino e custo para transicao ou quantidade de token que a transicao ira enviar.*/
     struct arcos *prox;
 }arcos;
+
+typedef struct tadt
+{
+    int nth;
+}tadt;
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(void);
@@ -94,7 +99,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
         printf("Funcao criar_transicoes funcionando.\n");
 }
 
-void criar_threads(void)
+void criar_threads()
 {
     /*TODO: criar funcao para criar threads.*/
     ;
