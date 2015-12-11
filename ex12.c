@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <allegro.h>
 
 #define DEBUG 1
+#define IMAGENAME "ex12.bmp"
 
 typedef struct estados /*Estrutura para armazenar estados.*/
 {
@@ -184,7 +186,36 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
 
 void gerar_imagem(void)
 {
+    BITMAP *buff;
+    PALETTE pal;
+    
+    if(install_allegro(SYSTEM_NONE, &errno, atexit)!=0)
+        exit(EXIT_FAILURE);
+        
+    set_color_depth(16);
+    get_palette(pal);
+    
+    buff = create_bitmap(640,480);
+    if(buff == NULL)
+    {
+       printf("Could not create buffer!\n");
+       exit(EXIT_FAILURE);
+    }
+
+    circle(buff, 160, 120, 100, CORAMARELO);
+    spline(buff, points, CORVERMELHO);
+    textprintf_ex(buff, font, 50, 50, CORVERDE, CORPRETO, "Teste do circulo.");
+
+    save_bitmap(IMAGENAME, buff, pal);
+    destroy_bitmap(buff);
+    allegro_exit();
+
+    printf("Imagem %s salva com sucesso!\n", IMAGENAME);
+}
+    
     /*TODO: criar funcao para gerar imagem da rede de petri.*/
+
+
     ;
 }
 
