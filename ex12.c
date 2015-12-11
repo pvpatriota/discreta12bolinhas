@@ -201,7 +201,7 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
 {
     if(DEBUG)
         printf("Iniciando funcao transferir_arco.\n");
-    arcos *r, *aux;
+    arcos *r, *aux, *plant;
     transicoes *pl;
     while(a1)
     {
@@ -216,10 +216,15 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
             printf("Inciando tranferencia do arco com origem no estado %d e detino na transicao %d.\n", r->origem, r->destino);
         aux=pl->entram;
         if(aux!=NULL)
-            while(aux->prox!=NULL)
+        {
+            while(aux!=NULL)
+            {
+                plant=aux;
                 aux=aux->prox;
+            }
+            aux=plant;
+        }
         aux=r;
-        /*TODO: resolver problema de segundo arco na mesma transicao.*/
         a1--;
     }
     while(a2)
@@ -296,7 +301,12 @@ estados *procurar_estado(estados *p_estados, int num)
 
 transicoes *procurar_transicao(transicoes *p_transicoes, int num)
 {
+    if(DEBUG)
+        printf("Iniciando funcao procurar_transicao.\n");
     transicoes *pl=p_transicoes;
+    if(DEBUG)
+        if(pl==NULL)
+            printf("procurar_transicao: pl = NULL.\n");
     while(pl!=NULL)
     {
         if(pl->ntr==num)
