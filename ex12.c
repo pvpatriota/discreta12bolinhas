@@ -37,7 +37,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(void);
 void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2);
-void gerar_imagem(void);
+void gerar_imagem();
 void procurar(void);
 void enviar_tokens(void);
 arcos *retirar_arco(arcos **p_arco);
@@ -208,9 +208,6 @@ void gerar_imagem(void)
        printf("Could not create buffer!\n");
        exit(EXIT_FAILURE);
     }
-
-    circle(buff, 160, 120, 100, CORAMARELO);
-    textprintf_ex(buff, font, 50, 50, CORVERDE, CORPRETO, "Teste do circulo.");
 
     save_bitmap(IMAGENAME, buff, pal);
     destroy_bitmap(buff);
