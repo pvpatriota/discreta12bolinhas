@@ -210,7 +210,6 @@ void gerar_imagem(void)
     }
 
     circle(buff, 160, 120, 100, CORAMARELO);
-    spline(buff, points, CORVERMELHO);
     textprintf_ex(buff, font, 50, 50, CORVERDE, CORPRETO, "Teste do circulo.");
 
     save_bitmap(IMAGENAME, buff, pal);
@@ -218,11 +217,8 @@ void gerar_imagem(void)
     allegro_exit();
 
     printf("Imagem %s salva com sucesso!\n", IMAGENAME);
-}
-    
+   
     /*TODO: criar funcao para gerar imagem da rede de petri.*/
-
-
     ;
 }
 
