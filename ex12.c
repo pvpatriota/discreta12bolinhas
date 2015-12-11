@@ -37,12 +37,15 @@ void criar_arcos(arcos **p_arcos, int a1, int a2);
 void relacionar_tokens(estados *p_estados, int num);
 estados *procurar_estado(estados *p_estados, int num);
 transicoes *procurar_transicao(transicoes *p_transicoes, int num);
+void debug(estados *p_estados, transicoes *p_transicoes);
 
 int main(void)
 {
     transicoes *cabeca_transicoes = NULL;
     estados *cabeca_estados = NULL;
     gerar_entrada(&cabeca_estados, &cabeca_transicoes);
+    if(DEBUG)
+        debug(cabeca_estados, cabeca_transicoes);
     criar_threads();
     /*TODO: funcao para esperar todas as threads retornarem.*/
     gerar_imagem();
@@ -74,7 +77,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
     relacionar_tokens(*p_estados, ect);
     if(DEBUG)
         printf("Funcao relacionar_tokens funcionando.\n");
-    criar_arcos(&cabeca_arcos, est, tr);
+    criar_arcos(&cabeca_arcos, aet, ate);
     if(DEBUG)
         printf("Funcao criar_arcos funcionando.\n");
     criar_transicoes(p_transicoes, &cabeca_arcos, aet, ate);
@@ -155,7 +158,7 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
     {
         pl=malloc(sizeof(transicoes));
         pl->prox=NULL;
-        pl->ntr=a1-aux;
+        pl->ntr=a2-aux;
         pl->entram=NULL;
         pl->saem=NULL;
         if(aux!=a2)
@@ -200,6 +203,7 @@ arcos *retirar_arco(arcos **p_arco)
     if(DEBUG)
         if(pl!=NULL)
             printf("Terminando a funcao retirar_arco com sucesso.\nArco encontrado vai de %d a %d.\n", pl->origem, pl->destino);
+    pl->prox=NULL;
     return pl;
 }
 
@@ -220,41 +224,43 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
                 printf("Transicao encontrada.\n");
         if(DEBUG)
             printf("Inciando tranferencia do arco com origem no estado %d e detino na transicao %d.\n", r->origem, r->destino);
-        aux=pl->entram;
-        if(aux!=NULL)
+        if(pl->entram!=NULL)
         {
+            aux=pl->entram;
             while(aux!=NULL)
             {
                 plant=aux;
                 aux=aux->prox;
             }
-            aux=plant;
+            plant->prox=r;
         }
-        aux=r;
+        else
+            pl->entram=r;
         a1--;
     }
     while(a2)
     {
         r=retirar_arco(p_arco);
         if(DEBUG)
-            printf("Arco com origem em %d e destino em %d.\n", r->origem, r->origem);
+            printf("Arco com origem em %d e destino em %d.\n", r->origem, r->destino);
         pl=procurar_transicao(p_transicao, r->origem);
         if(DEBUG)
             if(pl->ntr==r->origem)
                 printf("Transicao encontrada.\n");
         if(DEBUG)
-            printf("Inciando tranferencia do arco com origem no estado %d e destino na transicao %d.\n", r->origem, r->destino);
-        aux=pl->saem;
-        if(aux!=NULL)
+            printf("Inciando tranferencia do arco com origem na transicao %d e destino no estado %d.\n", r->origem, r->destino);
+        if(pl->saem!=NULL)
         {
+            aux=pl->saem;
             while(aux!=NULL)
             {
                 plant=aux;
                 aux=aux->prox;
             }
-            aux=plant;
+            plant->prox=r;
         }
-        aux=r;
+        else
+            pl->saem=r;
         a2--;
     }
     if(DEBUG)
@@ -331,6 +337,7 @@ transicoes *procurar_transicao(transicoes *p_transicoes, int num)
             printf("procurar_transicao: pl = NULL.\n");
     while(pl!=NULL)
     {
+        printf("1\n");
         if(pl->ntr==num)
             return pl;
         pl=pl->prox;
@@ -356,6 +363,55 @@ void relacionar_tokens(estados *p_estados, int num)
         if(DEBUG)
             printf("Colocando %d tokens no estado %d.\n", pl->nt, pl->ne);
         num--;
+    }
+}
+
+void debug(estados *p_estados, transicoes *p_transicoes)
+{
+    estados *pl=p_estados, *plant;
+    transicoes *plt=p_transicoes, *plantt;
+    arcos *pla;
+    printf("\n********** FUNCAO DEBUG!! **********\n");
+    while(pl!=NULL)
+    {
+        plant=pl;
+        pl=pl->prox;
+    }
+    printf("Numero de estados: %d.\nEstados com token:\n", plant->ne+1);
+    pl=p_estados;
+    while(pl!=NULL)
+    {
+        if(pl->nt!=0)
+            printf("Estado %d com %d tokens.\n", pl->ne, pl->nt);
+        pl=pl->prox;
+    }
+    while(plt!=NULL)
+    {
+        plantt=plt;
+        plt=plt->prox;
+    }
+    printf("Numero de transicoes: %d.\n", plantt->ntr+1);
+    plt=p_transicoes;
+    while(plt!=NULL)
+    {
+        pla=plt->entram;
+        while(pla!=NULL)
+        {
+            printf("Arco com origem no estado %d e com destino na transicao %d com custo de %d tokens.\n", pla->origem, pla->destino, pla->custo);
+            pla=pla->prox;
+        }
+        plt=plt->prox;
+    }
+    plt=p_transicoes;
+    while(plt!=NULL)
+    {
+        pla=plt->saem;
+        while(pla!=NULL)
+        {
+            printf("Arco com origem na transicao %d e com destino no estado %d que entrega %d tokens.\n", pla->origem, pla->destino, pla->custo);
+            pla=pla->prox;
+        }
+        plt=plt->prox;
     }
 }
 
