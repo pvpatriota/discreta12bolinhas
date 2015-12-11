@@ -1,8 +1,14 @@
 ex12.c: In function ‘criar_threads’:
 ex12.c:104:26: warning: unused parameter ‘p_threads’ [-Wunused-parameter]
- void criar_threads(tadt *p_threads)
+ void criar_threads(tadt *p_threads, transicoes *p_transicoes)
                           ^
+ex12.c:104:49: warning: unused parameter ‘p_transicoes’ [-Wunused-parameter]
+ void criar_threads(tadt *p_threads, transicoes *p_transicoes)
+                                                 ^
 ex12.c: In function ‘espera_threads’:
 ex12.c:110:27: warning: unused parameter ‘p_threads’ [-Wunused-parameter]
- void espera_threads(tadt *p_threads)
+ void espera_threads(tadt *p_threads, transicoes *p_transicoes)
                            ^
+ex12.c:110:50: warning: unused parameter ‘p_transicoes’ [-Wunused-parameter]
+ void espera_threads(tadt *p_threads, transicoes *p_transicoes)
+                                                  ^
