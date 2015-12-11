@@ -40,6 +40,7 @@ typedef struct tadt
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(tadt *p_threads);
+void espera_threads(tadt *p_threads);
 void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
 void gerar_imagem();
@@ -62,7 +63,7 @@ int main(void)
     if(DEBUG)
         debug(cabeca_estados, cabeca_transicoes);
     criar_threads(cabeca_threads);
-    /*TODO: funcao para esperar todas as threads retornarem.*/
+    espera_threads(cabeca_threads);
     gerar_imagem();
     return 0;
 }
@@ -103,6 +104,12 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 void criar_threads(tadt *p_threads)
 {
     /*TODO: criar funcao para criar threads.*/
+    ;
+}
+
+void espera_threads(tadt *p_threads)
+{
+    /*TODO: criar funcao para esperar threads terminarem.*/
     ;
 }
 
