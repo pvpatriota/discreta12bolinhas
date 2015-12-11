@@ -39,7 +39,7 @@ void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2);
 void gerar_imagem();
 void procurar(void);
-void enviar_tokens(void);
+void enviar_tokens(estados *e1, estados *e2, int num);
 arcos *retirar_arco(arcos **p_arco);
 void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2);
 void criar_arcos(arcos **p_arcos, int a1, int a2);
@@ -219,7 +219,7 @@ void gerar_imagem(void)
     ;
 }
 
-void enviar_tokens(void)
+void enviar_tokens(estados *e1, estados *e2, int num)
 {
     /*TODO: criar funcao para transicao enviar tokens.*/
     ;

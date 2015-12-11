@@ -1,0 +1,10 @@
+ex12.c: In function ‘enviar_tokens’:
+ex12.c:222:29: warning: unused parameter ‘e1’ [-Wunused-parameter]
+ void enviar_tokens(estados *e1, estados *e2, int num)
+                             ^
+ex12.c:222:42: warning: unused parameter ‘e2’ [-Wunused-parameter]
+ void enviar_tokens(estados *e1, estados *e2, int num)
+                                          ^
+ex12.c:222:50: warning: unused parameter ‘num’ [-Wunused-parameter]
+ void enviar_tokens(estados *e1, estados *e2, int num)
+                                                  ^
