@@ -40,8 +40,9 @@ typedef struct tadt
 }tadt;
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
-void criar_threads(tadt *p_threads, transicoes *p_transicoes);
+void criar_threads(tadt **p_threads, transicoes *p_transicoes);
 void espera_threads(tadt *p_threads, transicoes *p_transicoes);
+void roda_thread(tadt *dados);
 void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
 void gerar_imagem();
@@ -102,13 +103,14 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
         printf("Funcao criar_transicoes funcionando.\n");
 }
 
-void criar_threads(tadt *p_threads, transicoes *p_transicoes)
+void criar_threads(tadt **p_threads, transicoes *p_transicoes)
 {
     transicoes *pl=p_transicoes;
     tadt *pt=p_threads;
+    int num=0;
     while(pl!=NULL)
     {
-
+        /*TODO: definir criacao das threads.*/
         pl=pl->prox;
     }
 }
@@ -117,11 +119,18 @@ void espera_threads(tadt *p_threads, transicoes *p_transicoes)
 {
     transicoes *pl=p_transicoes;
     tadt *pt=p_threads;
-    while(pl!=NULL)
+    while(pt!=NULL)
     {
-        /*TODO: determinar como a funcao ira esperar as threads.*/
+        pthread_join(pt->nth, NULL);
+        pt=pt->prox;
         pl=pl->prox;
     }
+}
+
+void roda_thread(tadt *dados)
+{
+    /*TODO: funcao que ira realizar a ativacao e mudancas de tokens.*/
+    ;
 }
 
 void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criacao dos estados.*/
