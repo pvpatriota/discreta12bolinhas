@@ -36,7 +36,8 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
 typedef struct tadt
 {
     pthread_t nth;
-    struct estados *est; /*Ira receber a cabeca dos estados.*/
+    struct estados *este; /*Ira receber a cabeca dos estados que "entram"*/
+    struct estados *ests; /*Ira receber a cabeca dos estados que "saem"*/
     struct transicoes *tr; /*Transicao que a thread esta rodando.*/
     struct tadt *prox;
 }tadt;
@@ -108,10 +109,17 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 void criar_threads(tadt **p_threads, transicoes *p_transicoes)
 {
     transicoes *pl=p_transicoes;
-    tadt *pt=*p_threads;
+    tadt *pt=*p_threads, *plant=NULL;
     while(pl!=NULL)
     {
-        /*TODO: definir criacao das threads.*/
+        pt=malloc(sizeof(tadt));
+        pt->prox=NULL;
+        pt->tr=pl;
+        if(plant!=NULL)
+            plant->prox=pl;
+        else
+            *p_threads=pt;
+        plant=pl;
         pl=pl->prox;
     }
 }
@@ -128,7 +136,7 @@ void espera_threads(tadt *p_threads)
 
 void roda_thread(tadt *dados)
 {
-    /*TODO: funcao que ira realizar a ativacao e mudancas de tokens.*/
+    /*TODO: funcao que ira realizar a ativacao da troca de token e suas transferencias.*/
     ;
 }
 

@@ -1,8 +1,11 @@
 ex12.c: In function ‘criar_threads’:
-ex12.c:111:11: warning: unused variable ‘pt’ [-Wunused-variable]
-     tadt *pt=*p_threads;
-           ^
+ex12.c:119:24: warning: assignment from incompatible pointer type
+             plant->prox=pl;
+                        ^
+ex12.c:122:14: warning: assignment from incompatible pointer type
+         plant=pl;
+              ^
 ex12.c: In function ‘roda_thread’:
-ex12.c:129:24: warning: unused parameter ‘dados’ [-Wunused-parameter]
+ex12.c:137:24: warning: unused parameter ‘dados’ [-Wunused-parameter]
  void roda_thread(tadt *dados)
                         ^
