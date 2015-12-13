@@ -43,7 +43,7 @@ typedef struct tadt
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
 void criar_threads(tadt **p_threads, transicoes *p_transicoes);
 void espera_threads(tadt *p_threads);
-void roda_thread(tadt *dados);
+void *roda_thread(tadt *dados);
 void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
 void gerar_imagem();
@@ -114,11 +114,18 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes)
         pt->prox=NULL;
         pt->tr=pl;
         if(plant!=NULL)
-            plant->prox=pl;
+            plant->prox=pt;
         else
             *p_threads=pt;
-        plant=pl;
+        plant=pt;
+        pt=pt->prox;
         pl=pl->prox;
+    }
+    pt=*p_threads;
+    while(pt!=NULL)
+    {
+        pthread_create(&(pt->nth), NULL, roda_thread, (void *)&pt);
+        pt=pt->prox;
     }
 }
 
@@ -132,7 +139,7 @@ void espera_threads(tadt *p_threads)
     }
 }
 
-void roda_thread(tadt *dados)
+void *roda_thread(tadt *dados)
 {
     /*TODO: funcao que ira realizar a ativacao da troca de token e suas transferencias.*/
     ;
