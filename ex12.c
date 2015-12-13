@@ -105,6 +105,11 @@ void criar_threads(tadt *p_threads, transicoes *p_transicoes)
 {
     transicoes *pl=p_transicoes;
     tadt *pt=p_threads;
+    while(pl!=NULL)
+    {
+        /*TODO: determinar a abertura das threads.*/
+        pl=pl->prox;
+    }
 }
 
 void espera_threads(tadt *p_threads, transicoes *p_transicoes)
@@ -114,6 +119,7 @@ void espera_threads(tadt *p_threads, transicoes *p_transicoes)
     while(pl!=NULL)
     {
         /*TODO: determinar como a funcao ira esperar as threads.*/
+        pl=pl->prox;
     }
 }
 
