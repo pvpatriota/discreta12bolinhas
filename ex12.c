@@ -36,6 +36,7 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
 typedef struct tadt
 {
     pthread_t nth;
+    struct tadt *prox;
 }tadt;
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
@@ -107,7 +108,7 @@ void criar_threads(tadt *p_threads, transicoes *p_transicoes)
     tadt *pt=p_threads;
     while(pl!=NULL)
     {
-        /*TODO: determinar a abertura das threads.*/
+
         pl=pl->prox;
     }
 }
