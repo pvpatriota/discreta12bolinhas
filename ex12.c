@@ -36,8 +36,6 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
 typedef struct tadt
 {
     pthread_t nth;
-    struct estados *este; /*Ira receber a cabeca dos estados que "entram"*/
-    struct estados *ests; /*Ira receber a cabeca dos estados que "saem"*/
     struct transicoes *tr; /*Transicao que a thread esta rodando.*/
     struct tadt *prox;
 }tadt;
