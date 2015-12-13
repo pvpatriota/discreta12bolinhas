@@ -103,13 +103,14 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 
 void criar_threads(tadt *p_threads, transicoes *p_transicoes)
 {
-    /*TODO: criar funcao para criar threads.*/
-    ;
+    transicoes *pl=p_transicoes;
+    tadt *pt=p_threads;
 }
 
 void espera_threads(tadt *p_threads, transicoes *p_transicoes)
 {
     transicoes *pl=p_transicoes;
+    tadt *pt=p_threads;
     while(pl!=NULL)
     {
         /*TODO: determinar como a funcao ira esperar as threads.*/
