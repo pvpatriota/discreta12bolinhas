@@ -36,6 +36,7 @@ typedef struct arcos /*Estrutura para armazenar arcos*/
 typedef struct tadt
 {
     pthread_t nth;
+    struct estados *est;
     struct tadt *prox;
 }tadt;
 
@@ -115,15 +116,13 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes)
     }
 }
 
-void espera_threads(tadt *p_threads, transicoes *p_transicoes)
+void espera_threads(tadt *p_threads)
 {
-    transicoes *pl=p_transicoes;
     tadt *pt=p_threads;
     while(pt!=NULL)
     {
         pthread_join(pt->nth, NULL);
         pt=pt->prox;
-        pl=pl->prox;
     }
 }
 
