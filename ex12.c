@@ -109,8 +109,11 @@ void criar_threads(tadt *p_threads, transicoes *p_transicoes)
 
 void espera_threads(tadt *p_threads, transicoes *p_transicoes)
 {
-    /*TODO: criar funcao para esperar threads terminarem.*/
-    ;
+    transicoes *pl=p_transicoes;
+    while(pl!=NULL)
+    {
+        /*TODO: determinar como a funcao ira esperar as threads.*/
+    }
 }
 
 void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criacao dos estados.*/
