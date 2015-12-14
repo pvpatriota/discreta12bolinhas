@@ -1,4 +1,0 @@
-ex12.c: In function ‘roda_thread’:
-ex12.c:142:25: warning: unused parameter ‘dados’ [-Wunused-parameter]
- void *roda_thread(void *dados)
-                         ^

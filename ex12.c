@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <allegro.h>
 
-#define DEBUG 0
+#define DEBUG 1
 #define IMAGENAME "ex12.bmp"
 #define CORBRANCO (makecol(255,255,255))
 #define CORPRETO 1
@@ -66,7 +66,7 @@ int main(void)
     if(DEBUG)
         debug(cabeca_estados, cabeca_transicoes);
     criar_threads(&cabeca_threads, cabeca_transicoes);
-    espera_threads(cabeca_threads);
+    //espera_threads(cabeca_threads);
     gerar_imagem();
     return 0;
 }
@@ -124,6 +124,8 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes)
     pt=*p_threads;
     while(pt!=NULL)
     {
+        if(DEBUG)
+            printf("Thread da transicao %d sendo criada.\n", pt->tr->ntr);
         pthread_create(&(pt->nth), NULL, roda_thread, (void *)&pt);
         pt=pt->prox;
     }
@@ -134,6 +136,8 @@ void espera_threads(tadt *p_threads)
     tadt *pt=p_threads;
     while(pt!=NULL)
     {
+        if(DEBUG)
+            printf("Esperando thread.\n");
         pthread_join(pt->nth, NULL);
         pt=pt->prox;
     }
@@ -142,6 +146,9 @@ void espera_threads(tadt *p_threads)
 void *roda_thread(void *dados)
 {
     /*TODO: funcao que ira realizar a ativacao da troca de token e suas transferencias.*/
+    tadt *pl=(tadt *)dados;
+    if(DEBUG)
+        printf("Thread da transicao %d reportando.\n", pl->tr->ntr);
     return NULL;
 }
 
