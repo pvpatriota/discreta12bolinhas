@@ -1,15 +1,4 @@
-ex12.c: In function ‘criar_threads’:
-ex12.c:127:42: warning: passing argument 3 of ‘pthread_create’ from incompatible pointer type
-         pthread_create(&(pt->nth), NULL, roda_thread, (void *)&pt);
-                                          ^
-In file included from ex12.c:2:0:
-/usr/include/pthread.h:244:12: note: expected ‘void * (*)(void *)’ but argument is of type ‘void * (*)(struct tadt *)’
- extern int pthread_create (pthread_t *__restrict __newthread,
-            ^
 ex12.c: In function ‘roda_thread’:
 ex12.c:142:25: warning: unused parameter ‘dados’ [-Wunused-parameter]
- void *roda_thread(tadt *dados)
+ void *roda_thread(void *dados)
                          ^
-ex12.c:146:1: warning: control reaches end of non-void function [-Wreturn-type]
- }
- ^
