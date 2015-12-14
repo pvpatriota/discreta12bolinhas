@@ -237,9 +237,6 @@ void gerar_imagem(void)
     allegro_exit();
 
     printf("Imagem %s salva com sucesso!\n", IMAGENAME);
-   
-    /*TODO: criar funcao para gerar imagem da rede de petri.*/
-    ;
 }
 
 void enviar_tokens(estados *e1, estados *e2, int num)
