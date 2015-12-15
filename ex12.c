@@ -61,6 +61,8 @@ estados *procurar_estado(estados *p_estados, int num);
 transicoes *procurar_transicao(transicoes *p_transicoes, int num);
 void debug(estados *p_estados, transicoes *p_transicoes);
 
+static int est, tr, aet, ate;
+
 int main(void)
 {
     transicoes *cabeca_transicoes=NULL;
@@ -77,7 +79,7 @@ int main(void)
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 {
-    int est, tr, ect, aet, ate; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
+    int ect; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
     arcos *cabeca_arcos=NULL;
     scanf("%d", &est); /*Lendo cinco linhas iniciais do arquivo de entrada.*/
     scanf("%d", &tr);
