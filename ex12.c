@@ -79,7 +79,7 @@ int main(void)
         debug(cabeca_estados, cabeca_transicoes);
     criar_threads(&cabeca_threads, cabeca_transicoes, cabeca_estados);
     //espera_threads(cabeca_threads);
-    gerar_imagem();
+    gerar_imagem(cabeca_transicoes);
     return 0;
 }
 
@@ -265,7 +265,7 @@ void gerar_imagem(transicoes *p_transicoes)
         printf("Could not create buffer!\n");
         exit(EXIT_FAILURE);
     }
-    desenha_estdos(buff);
+    desenha_estados(buff);
     desenha_transicoes(buff, p_transicoes);
 
     while(1)
