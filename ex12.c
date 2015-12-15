@@ -54,7 +54,7 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
 void gerar_imagem(transicoes *p_transicoes);
 void desenha_estados(BITMAP *buff);
 void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
-void desenha_arcos(void);
+void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
 void procurar(void);
 void enviar_tokens(estados *e1, estados *e2, int num);
 arcos *retirar_arco(arcos **p_arco);
@@ -331,9 +331,8 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
     }
 }
 
-void desenha_arcos(void);
+void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
 {
-    /*TODO: Criar as funcoes matematicas para a criacao dos arcos para a imagem do allegro*/
     ;
 }
 
