@@ -53,6 +53,7 @@ void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
 void gerar_imagem(transicoes *p_transicoes);
 void desenha_estados(void);
+void desenha_transicoes(void);
 void procurar(void);
 void enviar_tokens(estados *e1, estados *e2, int num);
 arcos *retirar_arco(arcos **p_arco);
@@ -267,6 +268,11 @@ void gerar_imagem(void)
 }
 
 void desenha_estados(void);
+{
+    ;
+}
+
+void desenha_transicoes(void);
 {
     ;
 }
