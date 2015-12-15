@@ -23,7 +23,7 @@ BUILD = $(shell date +"%g%m%d.%H%M%S")
 DEFSYM = $(subst .,_,$(BUILD))
 VERSION = "\"$(MAJOR).$(MINOR).$(BUILD)\""
 CC = gcc
-CFLAGS = -Wall -Wextra -g -O0 `allegro-config --cflags --libs`
+CFLAGS = -Wall -Wextra -g -O0 -lm `allegro-config --cflags --libs`
 #-pedantic-errors
 #-ansi
 CPPFLAGS = -DVERSION=$(VERSION) -DBUILD="\"$(BUILD)\""
