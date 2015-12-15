@@ -53,7 +53,7 @@ void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
 void gerar_imagem(transicoes *p_transicoes);
 void desenha_estados(BITMAP *buff);
-void desenha_transicoes(void);
+void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
 void desenha_arcos(void);
 void procurar(void);
 void enviar_tokens(estados *e1, estados *e2, int num);
@@ -290,7 +290,7 @@ void desenha_estados(BITMAP *buff);
         printf("Estados criados com sucesso");
 }
 
-void desenha_transicoes(void);
+void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
 {
     /*TODO: Desenvolver o código que irá criar as transicoes para a imagem do allegro*/
     ;
