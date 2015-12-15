@@ -244,10 +244,13 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
         printf("Fim da funcao criar_transicoes.\n");
 }
 
-void gerar_imagem(void)
+void gerar_imagem(transicoes *p_transicoes)
 {
     BITMAP *buff;
     PALETTE pal;
+    arcos *pt = p_transicoes->entram;
+    arcos *pl = p_transicoes->saem;
+    int k=1,flag;
 
     if(install_allegro(SYSTEM_NONE, &errno, atexit)!=0)
         exit(EXIT_FAILURE);
