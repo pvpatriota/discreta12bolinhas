@@ -247,18 +247,18 @@ void gerar_imagem(void)
 {
     BITMAP *buff;
     PALETTE pal;
-    
+
     if(install_allegro(SYSTEM_NONE, &errno, atexit)!=0)
         exit(EXIT_FAILURE);
-        
+
     set_color_depth(16);
     get_palette(pal);
-    
+
     buff = create_bitmap(640,480);
     if(buff == NULL)
     {
-       printf("Could not create buffer!\n");
-       exit(EXIT_FAILURE);
+        printf("Could not create buffer!\n");
+        exit(EXIT_FAILURE);
     }
 
     save_bitmap(IMAGENAME, buff, pal);
@@ -292,8 +292,37 @@ void desenha_estados(BITMAP *buff);
 
 void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
 {
-    /*TODO: Desenvolver o código que irá criar as transicoes para a imagem do allegro*/
-    ;
+    int i,c=0,k=1;
+    float xi,yi,rc,raio;
+    transicoes *pl = p_transicoes;
+    raio = (Y/8)*(M_PI/(M_PI+est));
+    rc = YCentro - raio*4;
+    raio = (Y/12)*(M_PI/(M_PI+est));
+
+    while(1)
+    {
+        for(i=k;i<tr*2;i++)
+        {
+            yi=YCentro+rc*cos((2*M_PI/(est*2))*i);
+            xi=XCentro+rc*sin((2*M_PI/(est*2))*i);
+            line(buff, (xi), (yi)+raio, (xi), (yi)-raio, CORBRANCO);
+            if(M_PI/2<=(2*M_PI/(est*2))*i && (3*M_PI)/2>(2*M_PI/(est*2))*i)
+                textprintf_ex(buff, font, xi-10, yi-raio-12, CORVERDE, CORPRETO, "Tr%d",c++);
+            else
+            {
+                textprintf_ex(buff, font, xi-10, yi+raio+5, CORVERDE, CORPRETO, "Tr%d",c++);
+                break;
+            }
+            i++;
+        }
+        k = i+2;
+        if(pl->prox!=NULL)
+        {
+            pl=pl->prox;
+        }
+        else
+            break;
+    }
 }
 
 void desenha_arcos(void);
