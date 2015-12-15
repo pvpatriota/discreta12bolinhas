@@ -276,8 +276,13 @@ void desenha_estados(BITMAP *buff);
     raio = (Y/8)*(M_PI/(M_PI+est));
     rc = YCentro - raio*4;
 
-    /*TODO: Desenvolver o código responsável pela criacao dos estados para a imagem gerada pelo allegro.*/
-    ;
+    for(i=0;i<est;i++)
+    {
+        yi=YCentro+rc*cos((2*M_PI/est)*i);
+        xi=XCentro+rc*sin((2*M_PI/est)*i);
+        circle(buff, xi, yi, raio, CORBRANCO);
+        textprintf_ex(buff, font, (xi-18), (yi-5), CORVERDE, CORPRETO, "Est %d",i);
+    }
 }
 
 void desenha_transicoes(void);
