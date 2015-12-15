@@ -64,7 +64,7 @@ void relacionar_tokens(estados *p_estados, int num);
 estados *procurar_estado(estados *p_estados, int num);
 transicoes *procurar_transicao(transicoes *p_transicoes, int num);
 void debug(estados *p_estados, transicoes *p_transicoes);
-float arctan(float);
+float arctan(float x1, float y1, float x2, float y2);
 
 static int est, tr, aet, ate; /*Qtd de estados, qtd de transicoes, qtd de arcos estado->transicoes e qtd de arcos transicoes->estados*/
 
@@ -401,7 +401,7 @@ void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
 
 }
 
-float arctan(float)
+float arctan(float x1, float y1, float x2, float y2)
 {
     ;
 }
