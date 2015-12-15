@@ -37,6 +37,7 @@ typedef struct tadt
 {
     pthread_t nth;
     struct transicoes *tr; /*Transicao que a thread esta rodando.*/
+    struct estados *std; /*Ira armazenar a cabeca dos estados.*/
     struct tadt *prox;
 }tadt;
 
