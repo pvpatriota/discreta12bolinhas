@@ -124,6 +124,17 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estado
         pl=pl->prox;
     }
     pt=*p_threads;
+    if(DEBUG)
+    {
+        printf("*****Lista de threads******.\n");
+        while(pt!=NULL)
+        {
+            printf("thread da transicao %d.\n", pt->tr->ntr);
+            pt=pt->prox;
+        }
+        pt=*p_threads;
+        printf("*****Lista de threads******.\n");
+    }
     while(pt!=NULL)
     {
         if(DEBUG)
