@@ -41,11 +41,12 @@ typedef struct tadt
 {
     pthread_t nth;
     struct transicoes *tr; /*Transicao que a thread esta rodando.*/
+    struct estados *std; /*Ira armazenar a cabeca dos estados.*/
     struct tadt *prox;
 }tadt;
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
-void criar_threads(tadt **p_threads, transicoes *p_transicoes);
+void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estados);
 void espera_threads(tadt *p_threads);
 void *roda_thread(void *dados);
 void criar_estados(estados **p_estados, int num);
@@ -71,7 +72,7 @@ int main(void)
     gerar_entrada(&cabeca_estados, &cabeca_transicoes);
     if(DEBUG)
         debug(cabeca_estados, cabeca_transicoes);
-    criar_threads(&cabeca_threads, cabeca_transicoes);
+    criar_threads(&cabeca_threads, cabeca_transicoes, cabeca_estados);
     //espera_threads(cabeca_threads);
     gerar_imagem();
     return 0;
@@ -110,7 +111,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
         printf("Funcao criar_transicoes funcionando.\n");
 }
 
-void criar_threads(tadt **p_threads, transicoes *p_transicoes)
+void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estados)
 {
     transicoes *pl=p_transicoes;
     tadt *pt=*p_threads, *plant=NULL;
@@ -119,6 +120,7 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes)
         pt=malloc(sizeof(tadt));
         pt->prox=NULL;
         pt->tr=pl;
+        pt->std=p_estados;
         if(plant!=NULL)
             plant->prox=pt;
         else
@@ -128,6 +130,17 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes)
         pl=pl->prox;
     }
     pt=*p_threads;
+    if(DEBUG)
+    {
+        printf("*****Lista de threads******.\n");
+        while(pt!=NULL)
+        {
+            printf("thread da transicao %d.\n", pt->tr->ntr);
+            pt=pt->prox;
+        }
+        pt=*p_threads;
+        printf("*****Lista de threads******.\n");
+    }
     while(pt!=NULL)
     {
         if(DEBUG)
