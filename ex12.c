@@ -339,32 +339,32 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes)
     while(1)
     {
         if(DEBUG)
-            printf("Inicializando o laco para a criacao das transicoes\n").
-                for(i=k;i<tr*2;i++)
-                {
-                    if(DEBUG)
-                        printf("Iniciando a criacao das transicoes e ira rodar %d vezes.\n", tr);
-                    yi=YCentro+rc*cos((2*M_PI/(est*2))*i);
-                    xi=XCentro+rc*sin((2*M_PI/(est*2))*i);
-                    line(buff, (xi), (yi)+raio, (xi), (yi)-raio, CORBRANCO);
-                    if(M_PI/2<=(2*M_PI/(est*2))*i && (3*M_PI)/2>(2*M_PI/(est*2))*i)
-                        textprintf_ex(buff, font, xi-10, yi-raio-12, CORVERDE, CORPRETO, "Tr%d",c++);
-                    else
-                    {
-                        textprintf_ex(buff, font, xi-10, yi+raio+5, CORVERDE, CORPRETO, "Tr%d",c++);
-                        break;
-                    }
-                    i++;
-                }
-        if(DEBUG)
-            printf("Criacao das transicoes realizada com sucesso.\n");
-        k = i+2;
-        if(pl->prox!=NULL)
+            printf("Inicializando o laco para a criacao das transicoes\n");
+        for(i=k;i<tr*2;i++)
         {
-            pl=pl->prox;
+            if(DEBUG)
+                printf("Iniciando a criacao das transicoes e ira rodar %d vezes.\n", tr);
+            yi=YCentro+rc*cos((2*M_PI/(est*2))*i);
+            xi=XCentro+rc*sin((2*M_PI/(est*2))*i);
+            line(buff, (xi), (yi)+raio, (xi), (yi)-raio, CORBRANCO);
+            if(M_PI/2<=(2*M_PI/(est*2))*i && (3*M_PI)/2>(2*M_PI/(est*2))*i)
+                textprintf_ex(buff, font, xi-10, yi-raio-12, CORVERDE, CORPRETO, "Tr%d",c++);
+            else
+            {
+                textprintf_ex(buff, font, xi-10, yi+raio+5, CORVERDE, CORPRETO, "Tr%d",c++);
+                break;
+            }
+            i++;
         }
-        else
-            break;
+    if(DEBUG)
+        printf("Criacao das transicoes realizada com sucesso.\n");
+    k = i+2;
+    if(pl->prox!=NULL)
+    {
+        pl=pl->prox;
+    }
+    else
+       break;
     }
 }
 
