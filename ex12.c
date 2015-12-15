@@ -403,7 +403,25 @@ void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
 
 float arctan(float x1, float y1, float x2, float y2)
 {
-    ;
+    if(x2 == x1)
+    {
+        if(y2 == y1)
+            return 9.0;
+        else
+            if(y2>y1)
+                return M_PI/2.0;
+        return 3.0*M_PI/2.0;
+    }
+    if((y2 == y1) && (x2 < x1))
+        return M_PI;
+    float a = atan(fabs(y2-y1)/fabs(x2-x1));
+    if((x2 < x1) && (y2 > y1)) /* 2º quadrante*/
+        return a + M_PI/2.0;
+    if((x2 < x1) && (y2 < y1)) /* 3º quadrante*/
+        return a + M_PI;
+    if((x2 > x1) && (y2 < y1)) /* 4º quadrante*/
+        return a + 3.0*M_PI/2.0;
+    return a; /* 1º quadrante*/
 }
 
 void enviar_tokens(estados *e1, estados *e2, int num)
