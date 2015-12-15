@@ -114,6 +114,7 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estado
         pt=malloc(sizeof(tadt));
         pt->prox=NULL;
         pt->tr=pl;
+        pt->std=p_estados;
         if(plant!=NULL)
             plant->prox=pt;
         else
