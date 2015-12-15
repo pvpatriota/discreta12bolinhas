@@ -62,7 +62,7 @@ estados *procurar_estado(estados *p_estados, int num);
 transicoes *procurar_transicao(transicoes *p_transicoes, int num);
 void debug(estados *p_estados, transicoes *p_transicoes);
 
-static int est, tr, aet, ate;
+static int est, tr, aet, ate; /*Qtd de estados, qtd de transicoes, qtd de arcos estado->transicoes e qtd de arcos transicoes->estados*/
 
 int main(void)
 {
