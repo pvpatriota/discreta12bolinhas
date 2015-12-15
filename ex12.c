@@ -5,7 +5,7 @@
 #include <math.h>
 
 #define DEBUG 1
-#define IMAGENAME "ex12 -> entrada 1.bmp"
+#define IMAGENAME "ex12 -> entrada 2.bmp"
 #define CORBRANCO (makecol(255,255,255))
 #define CORPRETO 1
 #define CORCINZA (makecol(160,160,160))
