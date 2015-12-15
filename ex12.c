@@ -54,6 +54,7 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
 void gerar_imagem(transicoes *p_transicoes);
 void desenha_estados(void);
 void desenha_transicoes(void);
+void desenha_arcos(void);
 void procurar(void);
 void enviar_tokens(estados *e1, estados *e2, int num);
 arcos *retirar_arco(arcos **p_arco);
@@ -269,11 +270,19 @@ void gerar_imagem(void)
 
 void desenha_estados(void);
 {
+    /*TODO: Desenvolver o código responsável pela criacao dos estados para a imagem gerada pelo allegro.*/
     ;
 }
 
 void desenha_transicoes(void);
 {
+    /*TODO: Desenvolver o código que irá criar as transicoes para a imagem do allegro*/
+    ;
+}
+
+void desenha_arcos(void);
+{
+    /*TODO: Criar as funcoes matematicas para a criacao dos arcos para a imagem do allegro*/
     ;
 }
 
