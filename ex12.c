@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <allegro.h>
+#include <math.h>
 
 #define DEBUG 1
 #define IMAGENAME "ex12.bmp"

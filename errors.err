@@ -1,0 +1,38 @@
+ex12.c: In function ‘main’:
+ex12.c:81:5: error: too few arguments to function ‘gerar_imagem’
+     gerar_imagem();
+     ^
+ex12.c:54:6: note: declared here
+ void gerar_imagem(transicoes *p_transicoes);
+      ^
+ex12.c: In function ‘gerar_imagem’:
+ex12.c:267:5: warning: implicit declaration of function ‘desenha_estdos’ [-Wimplicit-function-declaration]
+     desenha_estdos(buff);
+     ^
+ex12.c: At top level:
+ex12.c:308:1: error: expected identifier or ‘(’ before ‘{’ token
+ {
+ ^
+ex12.c:330:1: error: expected identifier or ‘(’ before ‘{’ token
+ {
+ ^
+ex12.c:371:1: error: expected identifier or ‘(’ before ‘{’ token
+ {
+ ^
+ex12.c: In function ‘arctan’:
+ex12.c:447:24: error: ‘M_PI’ undeclared (first use in this function)
+                 return M_PI/2.0;
+                        ^
+ex12.c:447:24: note: each undeclared identifier is reported only once for each function it appears in
+ex12.c:452:5: warning: implicit declaration of function ‘atan’ [-Wimplicit-function-declaration]
+     float a = atan(fabs(y2-y1)/fabs(x2-x1));
+     ^
+ex12.c:452:15: warning: incompatible implicit declaration of built-in function ‘atan’
+     float a = atan(fabs(y2-y1)/fabs(x2-x1));
+               ^
+ex12.c:452:5: warning: implicit declaration of function ‘fabs’ [-Wimplicit-function-declaration]
+     float a = atan(fabs(y2-y1)/fabs(x2-x1));
+     ^
+ex12.c:452:20: warning: incompatible implicit declaration of built-in function ‘fabs’
+     float a = atan(fabs(y2-y1)/fabs(x2-x1));
+                    ^
