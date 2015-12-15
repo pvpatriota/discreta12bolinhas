@@ -301,8 +301,12 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
 
     while(1)
     {
+        if(DEBUG)
+            printf("Inicializando o laco para a criacao das transicoes\n").
         for(i=k;i<tr*2;i++)
         {
+            if(DEBUG)
+                printf("Iniciando a criacao das transicoes e ira rodar %d vezes.\n", tr);
             yi=YCentro+rc*cos((2*M_PI/(est*2))*i);
             xi=XCentro+rc*sin((2*M_PI/(est*2))*i);
             line(buff, (xi), (yi)+raio, (xi), (yi)-raio, CORBRANCO);
@@ -315,6 +319,8 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
             }
             i++;
         }
+        if(DEBUG)
+            printf("Criacao das transicoes realizada com sucesso.\n");
         k = i+2;
         if(pl->prox!=NULL)
         {
