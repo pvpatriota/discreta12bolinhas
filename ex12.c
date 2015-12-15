@@ -333,7 +333,15 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
 
 void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
 {
-    ;
+    float delta, alfa, beta, phi, x1, y1, x2, y2, x3, y3, xo, yo, xf, yf, raio, xt1, yt1, xt2, yt2, rc;
+    raio=(Y/8)*(M_PI/(M_PI+est));
+    rc = YCentro - raio*4;
+
+    y1 = YCentro + rc*cos((2*M_PI/k)*qo);
+    x1 = XCentro + rc*sin((2*M_PI/k)*qo);
+    y3 = YCentro + rc*cos((2*M_PI/k)*qf);
+    x3 = XCentro + rc*sin((2*M_PI/k)*qf);
+
 }
 
 void enviar_tokens(estados *e1, estados *e2, int num)
