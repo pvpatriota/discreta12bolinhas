@@ -13,8 +13,8 @@
 #define CORVERDE (makecol(0, 255, 0))
 #define CORAMARELO (makecol(255,255,100))
 #define CORVERMELHO (makecol(255, 0, 0))
-#define X 1000
-#define Y 1000
+#define X 2000
+#define Y 2000
 #define XCentro X/2.0
 #define YCentro Y/2.0
 
