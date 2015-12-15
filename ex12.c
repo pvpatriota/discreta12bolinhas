@@ -305,7 +305,7 @@ void gerar_imagem(transicoes *p_transicoes)
     printf("Imagem %s salva com sucesso!\n", IMAGENAME);
 }
 
-void desenha_estados(BITMAP *buff);
+void desenha_estados(BITMAP *buff)
 {
     int i;
     float raio,xi,yi,rc;
@@ -327,7 +327,7 @@ void desenha_estados(BITMAP *buff);
         printf("Estados criados com sucesso");
 }
 
-void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
+void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes)
 {
     int i,c=0,k=1;
     float xi,yi,rc,raio;
@@ -368,7 +368,7 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
     }
 }
 
-void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
+void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
 {
     float delta, alfa, beta, phi, x1, y1, x2, y2, x3, y3, xo, yo, xf, yf, raio, xt1, yt1, xt2, yt2, rc;
     raio=(Y/8)*(M_PI/(M_PI+est));
