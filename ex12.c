@@ -272,17 +272,22 @@ void desenha_estados(BITMAP *buff);
 {
     int i;
     float raio,xi,yi,rc;
-
     raio = (Y/8)*(M_PI/(M_PI+est));
     rc = YCentro - raio*4;
 
+    if(DEBUG)
+        printf("Iniciando a funcao desenha_arcos\n");
     for(i=0;i<est;i++)
     {
+        if(DEBUG)
+            printf("Criando os estados.\n");
         yi=YCentro+rc*cos((2*M_PI/est)*i);
         xi=XCentro+rc*sin((2*M_PI/est)*i);
         circle(buff, xi, yi, raio, CORBRANCO);
         textprintf_ex(buff, font, (xi-18), (yi-5), CORVERDE, CORPRETO, "Est %d",i);
     }
+    if(DEBUG)
+        printf("Estados criados com sucesso");
 }
 
 void desenha_transicoes(void);
