@@ -52,7 +52,7 @@ void *roda_thread(void *dados);
 void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
 void gerar_imagem(transicoes *p_transicoes);
-void desenha_estados(void);
+void desenha_estados(BITMAP *buff);
 void desenha_transicoes(void);
 void desenha_arcos(void);
 void procurar(void);
@@ -268,8 +268,14 @@ void gerar_imagem(void)
     printf("Imagem %s salva com sucesso!\n", IMAGENAME);
 }
 
-void desenha_estados(void);
+void desenha_estados(BITMAP *buff);
 {
+    int i;
+    float raio,xi,yi,rc;
+
+    raio = (Y/8)*(M_PI/(M_PI+est));
+    rc = YCentro - raio*4;
+
     /*TODO: Desenvolver o código responsável pela criacao dos estados para a imagem gerada pelo allegro.*/
     ;
 }
