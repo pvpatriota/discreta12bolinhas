@@ -12,6 +12,10 @@
 #define CORVERDE (makecol(0, 255, 0))
 #define CORAMARELO (makecol(255,255,100))
 #define CORVERMELHO (makecol(255, 0, 0))
+#define X 800
+#define Y 800
+#define XCentro X/2.0
+#define YCentro Y/2.0
 
 typedef struct estados /*Estrutura para armazenar estados.*/
 {
@@ -46,7 +50,7 @@ void espera_threads(tadt *p_threads);
 void *roda_thread(void *dados);
 void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
-void gerar_imagem();
+void gerar_imagem(transicoes *p_transicoes);
 void procurar(void);
 void enviar_tokens(estados *e1, estados *e2, int num);
 arcos *retirar_arco(arcos **p_arco);
