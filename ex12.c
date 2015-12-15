@@ -264,6 +264,38 @@ void gerar_imagem(transicoes *p_transicoes)
         printf("Could not create buffer!\n");
         exit(EXIT_FAILURE);
     }
+    desenha_estdos(buff);
+    desenha_transicoes(buff, p_transicoes);
+
+    while(1)
+    {
+        if(DEBUG)
+            printf("Criando arcos\n");
+        flag=1;
+        while(pt !=NULL )
+        {
+            desenha_arcos(pt->origem*2,pt->destino+k,buff,est*2,pt->custo,flag);
+            if(DEBUG)
+                printf("Lugar: %d ->  Transicao: %d\n", pt->origem, pt->destino);
+            pt=pt->prox;
+
+        }
+        flag=0;
+        while(pl !=NULL )
+        {
+            desenha_arcos(pl->origem+k,pl->destino*2,buff,est*2,pl->custo,flag);
+            if(DEBUG)
+                printf("Transicao: %d -> Lugar: %d\n", pl->origem, pl->destino);
+            pl=pl->prox;
+
+        }
+        k++;
+        p_transicoes=p_transicoes->prox;
+        if(p_transicoes==NULL)
+            break;
+        pt=p_transicoes->entram;
+        pl=p_transicoes->saem;
+    }
 
     save_bitmap(IMAGENAME, buff, pal);
     destroy_bitmap(buff);
