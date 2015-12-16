@@ -121,7 +121,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estados)
 {
     transicoes *pl=p_transicoes;
-    tadt *pt=*p_threads, *plant=NULL;
+    tadt *pt, *plant=NULL;
     while(pl!=NULL)
     {
         pt=malloc(sizeof(tadt));
