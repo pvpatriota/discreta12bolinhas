@@ -19,32 +19,32 @@
 #define XCentro X/2.0
 #define YCentro Y/2.0
 
-typedef struct estados /*Estrutura para armazenar estados.*/
+typedef struct sestados /*Estrutura para armazenar estados.*/
 {
     int ne, nt; /*Numero do estado e numero de tokens, respectivamente.*/
-    struct estados *prox;
+    struct sestados *prox;
 }estados;
 
-typedef struct transicoes /*Estrutura para armazenar transicoes.*/
+typedef struct stransicoes /*Estrutura para armazenar transicoes.*/
 {
     int ntr; /*Numero da transicao*/
-    struct transicoes *prox;
-    struct arcos *entram;
-    struct arcos *saem;
+    struct stransicoes *prox;
+    struct sarcos *entram;
+    struct sarcos *saem;
 }transicoes;
 
-typedef struct arcos /*Estrutura para armazenar arcos*/
+typedef struct sarcos /*Estrutura para armazenar arcos*/
 {
     int origem, destino, custo; /*ponto de origem, destino e custo para transicao ou quantidade de token que a transicao ira enviar.*/
-    struct arcos *prox;
+    struct sarcos *prox;
 }arcos;
 
-typedef struct tadt
+typedef struct stadt
 {
     pthread_t nth;
-    struct transicoes *tr; /*Transicao que a thread esta rodando.*/
-    struct estados *std; /*Ira armazenar a cabeca dos estados.*/
-    struct tadt *prox;
+    struct stransicoes *tr; /*Transicao que a thread esta rodando.*/
+    struct sestados *std; /*Ira armazenar a cabeca dos estados.*/
+    struct stadt *prox;
 }tadt;
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
