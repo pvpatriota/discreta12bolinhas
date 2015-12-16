@@ -75,10 +75,12 @@ int main(void)
     estados *cabeca_estados=NULL;
     tadt *cabeca_threads=NULL;
     gerar_entrada(&cabeca_estados, &cabeca_transicoes);
+    printf("\nANTES DA SIMULACAO");
     debug(cabeca_estados, cabeca_transicoes);
     criar_threads(&cabeca_threads, cabeca_transicoes, cabeca_estados);
     espera_threads(cabeca_threads);
     gerar_imagem(cabeca_transicoes);
+    printf("\nDEPOIS DA SIMULACAO");
     debug(cabeca_estados, cabeca_transicoes);
     return 0;
 }
@@ -388,15 +390,15 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes)
             }
             i++;
         }
-    if(DEBUG)
-        printf("Criacao das transicoes realizada com sucesso.\n");
-    k = i+2;
-    if(pl->prox!=NULL)
-    {
-        pl=pl->prox;
-    }
-    else
-       break;
+        if(DEBUG)
+            printf("Criacao das transicoes realizada com sucesso.\n");
+        k = i+2;
+        if(pl->prox!=NULL)
+        {
+            pl=pl->prox;
+        }
+        else
+            break;
     }
 }
 
@@ -608,22 +610,22 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
 estados *procurar_estado(estados *p_estados, int num)
 {
     /*if(DEBUG)
-        printf("Iniciando funcao procurar_estado.\n");*/
+      printf("Iniciando funcao procurar_estado.\n");*/
     estados *pl=p_estados;
     /*if(DEBUG)
-        printf("Estamos no estado %d.\n", pl->ne);*/
+      printf("Estamos no estado %d.\n", pl->ne);*/
     while(pl!=NULL)
     {
         /*if(DEBUG)
-            printf("O numero do estado sendo procurado e: %d. Estamos no estado: %d.\n", num, pl->ne);*/
+          printf("O numero do estado sendo procurado e: %d. Estamos no estado: %d.\n", num, pl->ne);*/
         if(pl->ne==num)
         {
             /*if(DEBUG)
-                printf("Estado %d encontrado.\n", pl->ne);*/
+              printf("Estado %d encontrado.\n", pl->ne);*/
             return pl;
         }
         /*if(DEBUG)
-            printf("Estamos no estado %d.\n", pl->ne);*/
+          printf("Estamos no estado %d.\n", pl->ne);*/
         pl=pl->prox;
     }
     if(DEBUG)
@@ -674,7 +676,7 @@ void debug(estados *p_estados, transicoes *p_transicoes)
     estados *pl=p_estados, *plant;
     transicoes *plt=p_transicoes, *plantt;
     arcos *pla;
-    printf("\n********** FUNCAO DEBUG!! **********\n");
+    printf("\n*************************************\n");
     while(pl!=NULL)
     {
         plant=pl;
@@ -694,27 +696,30 @@ void debug(estados *p_estados, transicoes *p_transicoes)
         plt=plt->prox;
     }
     printf("Numero de transicoes: %d.\n", plantt->ntr+1);
-    plt=p_transicoes;
-    while(plt!=NULL)
+    if(DEBUG)
     {
-        pla=plt->entram;
-        while(pla!=NULL)
+        plt=p_transicoes;
+        while(plt!=NULL)
         {
-            printf("Arco com origem no estado %d e com destino na transicao %d com custo de %d tokens.\n", pla->origem, pla->destino, pla->custo);
-            pla=pla->prox;
+            pla=plt->entram;
+            while(pla!=NULL)
+            {
+                printf("Arco com origem no estado %d e com destino na transicao %d com custo de %d tokens.\n", pla->origem, pla->destino, pla->custo);
+                pla=pla->prox;
+            }
+            plt=plt->prox;
         }
-        plt=plt->prox;
-    }
-    plt=p_transicoes;
-    while(plt!=NULL)
-    {
-        pla=plt->saem;
-        while(pla!=NULL)
+        plt=p_transicoes;
+        while(plt!=NULL)
         {
-            printf("Arco com origem na transicao %d e com destino no estado %d que entrega %d tokens.\n", pla->origem, pla->destino, pla->custo);
-            pla=pla->prox;
+            pla=plt->saem;
+            while(pla!=NULL)
+            {
+                printf("Arco com origem na transicao %d e com destino no estado %d que entrega %d tokens.\n", pla->origem, pla->destino, pla->custo);
+                pla=pla->prox;
+            }
+            plt=plt->prox;
         }
-        plt=plt->prox;
     }
 }
 
