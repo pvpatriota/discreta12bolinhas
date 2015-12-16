@@ -39,7 +39,7 @@ typedef struct sarcos /*Estrutura para armazenar arcos*/
     struct sarcos *prox;
 }arcos;
 
-typedef struct stadt
+typedef struct stadt /*Estrutura para auxiliar na criacao das threads.*/
 {
     pthread_t nth;
     struct stransicoes *tr; /*Transicao que a thread esta rodando.*/
@@ -47,24 +47,23 @@ typedef struct stadt
     struct stadt *prox;
 }tadt;
 
-void gerar_entrada(estados **p_estados, transicoes **p_transicoes);
-void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estados);
-void espera_threads(tadt *p_threads);
-void *roda_thread(void *dados);
-void criar_estados(estados **p_estados, int num);
-void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
+void gerar_entrada(estados **p_estados, transicoes **p_transicoes); /*Funcao respostavel por ler e administrar entrada do programa.*/
+void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estados); /*Funcao responsavel por criar as threads.*/
+void espera_threads(tadt *p_threads);/*Funcao responsavel por esperar todas as threads terminarem seus trabalhos.*/
+void *roda_thread(void *dados); /*Funcao que sera rodada pelas threads.*/
+void criar_estados(estados **p_estados, int num); /*Funcao que, dentro da funcao gerar_entrada, ira criar os estados.*/
+void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num); /*Ira criar as transicoes.*/
 void gerar_imagem(transicoes *p_transicoes);
 void desenha_estados(BITMAP *buff);
 void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
 void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
-void enviar_tokens(estados *e1, estados *e2, int num);
-arcos *retirar_arco(arcos **p_arco);
-void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2);
-void criar_arcos(arcos **p_arcos, int a1, int a2);
-void relacionar_tokens(estados *p_estados, int num);
-estados *procurar_estado(estados *p_estados, int num);
-transicoes *procurar_transicao(transicoes *p_transicoes, int num);
-void debug(estados *p_estados, transicoes *p_transicoes);
+arcos *retirar_arco(arcos **p_arco); /*Funcao que ira retirar um arco da lista de arcos, funciona dentro da funcao transferir_arco.*/
+void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2); /*Funcao que transefere arcos da lista principal para as transicoes que eles pertencem.*/
+void criar_arcos(arcos **p_arcos, int a1, int a2); /*Funcao que, dentro da funcao gerar_entrada, ira criar a lista de arcos.*/
+void relacionar_tokens(estados *p_estados, int num); /*Funcao que ira relacionar os tokens com seus estados.*/
+estados *procurar_estado(estados *p_estados, int num); /*Funcao auxiliar para buscar um estado da lista.*/
+transicoes *procurar_transicao(transicoes *p_transicoes, int num); /*Funcao auxiliar para procurar transicao.*/
+void debug(estados *p_estados, transicoes *p_transicoes); /*Funcao para mostrar dados do programa na tela.*/
 float arctan(float x1, float y1, float x2, float y2);
 
 static int est, tr, aet, ate; /*Qtd de estados, qtd de transicoes, qtd de arcos estado->transicoes e qtd de arcos transicoes->estados*/
@@ -87,7 +86,7 @@ int main(void)
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 {
-    int ect; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
+    int ect; /*Estados com tokens.*/
     arcos *cabeca_arcos=NULL;
     scanf("%d", &est); /*Lendo cinco linhas iniciais do arquivo de entrada.*/
     scanf("%d", &tr);
@@ -122,7 +121,7 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estado
 {
     transicoes *pl=p_transicoes;
     tadt *pt, *plant=NULL;
-    while(pl!=NULL)
+    while(pl!=NULL) /*Criando lista que ira ser relacionada com as threads.*/
     {
         pt=malloc(sizeof(tadt));
         pt->prox=NULL;
@@ -136,7 +135,7 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estado
         pt=pt->prox;
         pl=pl->prox;
     }
-    pt=*p_threads;
+    pt=*p_threads; /*colocando ponteiro auxiliar como cabeca da lista em questao.*/
     if(DEBUG)
     {
         printf("*****Lista de threads******.\n");
@@ -145,7 +144,7 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estado
             printf("thread da transicao %d.\n", pt->tr->ntr);
             pt=pt->prox;
         }
-        pt=*p_threads;
+        pt=*p_threads; /*Colocando o ponteiro auxiliar como cabeca novamente caso o debug seja utilizado.*/
         printf("*****Lista de threads******.\n");
     }
     while(pt!=NULL)
@@ -175,18 +174,18 @@ void *roda_thread(void *dados)
     tadt *pl=(tadt *)dados;
     arcos *pa;
     estados *pe;
-    while(cont<=ITERACOES)
+    while(cont<=ITERACOES) /*A quantidade de iteracoes pode ser modificada pela alteracao do define.*/
     {
-        aux=1;
+        aux=1; /*Variavel que vai ser utilizada como forma de checar a possibilidade, ou nao, da ativacao da transicao.*/
         pa=pl->tr->entram;
         while(pa!=NULL)
         {
             pe=procurar_estado(pl->std, pa->origem);
             if(pa->custo>pe->nt)
-                aux=0;
+                aux=0; /*A ativacao vai ser considerada sempre verdadeira, sendo considerada falsa apenas caso esteja faltando algum token.*/
             pa=pa->prox;
         }
-        if(aux)
+        if(aux) /*Sera ativada apenas se todos os estados de origem da transicao estiverem com mais tokens que o necessario.*/
         {
             pa=pl->tr->entram;
             while(pa!=NULL)
@@ -494,13 +493,7 @@ float arctan(float x1, float y1, float x2, float y2)
     return a; /* 1º quadrante*/
 }
 
-void enviar_tokens(estados *e1, estados *e2, int num)
-{
-    e1->nt-=num;
-    e2->nt+=num;
-}
-
-arcos *retirar_arco(arcos **p_arco)
+arcos *retirar_arco(arcos **p_arco) /*Esta funcao so pode ser utilizada caso se a intencao seja retirar a cabeca da lista.*/
 {
     if(DEBUG)
         printf("Entrando na funcao retirar_arco.\n");
