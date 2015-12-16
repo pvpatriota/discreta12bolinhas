@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <allegro.h>
+#include <math.h>
 
 #define DEBUG 1
 #define IMAGENAME "ex12.bmp"
@@ -12,6 +13,10 @@
 #define CORVERDE (makecol(0, 255, 0))
 #define CORAMARELO (makecol(255,255,100))
 #define CORVERMELHO (makecol(255, 0, 0))
+#define X 640
+#define Y 480
+#define XCentro X/2.0
+#define YCentro Y/2.0
 
 typedef struct estados /*Estrutura para armazenar estados.*/
 {
@@ -47,7 +52,10 @@ void espera_threads(tadt *p_threads);
 void *roda_thread(void *dados);
 void criar_estados(estados **p_estados, int num);
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num);
-void gerar_imagem();
+void gerar_imagem(transicoes *p_transicoes);
+void desenha_estados(BITMAP *buff);
+void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
+void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
 void procurar(void);
 void enviar_tokens(estados *e1, estados *e2, int num);
 arcos *retirar_arco(arcos **p_arco);
@@ -57,6 +65,9 @@ void relacionar_tokens(estados *p_estados, int num);
 estados *procurar_estado(estados *p_estados, int num);
 transicoes *procurar_transicao(transicoes *p_transicoes, int num);
 void debug(estados *p_estados, transicoes *p_transicoes);
+float arctan(float x1, float y1, float x2, float y2);
+
+static int est, tr, aet, ate; /*Qtd de estados, qtd de transicoes, qtd de arcos estado->transicoes e qtd de arcos transicoes->estados*/
 
 int main(void)
 {
@@ -68,13 +79,13 @@ int main(void)
         debug(cabeca_estados, cabeca_transicoes);
     criar_threads(&cabeca_threads, cabeca_transicoes, cabeca_estados);
     //espera_threads(cabeca_threads);
-    gerar_imagem();
+    gerar_imagem(cabeca_transicoes);
     return 0;
 }
 
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 {
-    int est, tr, ect, aet, ate; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
+    int ect; /*Qtd estados, qtd transicoes, qtd estados com token, qtd arcos estado->transicao, qtd arcos transicao->estado*/
     arcos *cabeca_arcos=NULL;
     scanf("%d", &est); /*Lendo cinco linhas iniciais do arquivo de entrada.*/
     scanf("%d", &tr);
@@ -234,22 +245,57 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
         printf("Fim da funcao criar_transicoes.\n");
 }
 
-void gerar_imagem(void)
+void gerar_imagem(transicoes *p_transicoes)
 {
     BITMAP *buff;
     PALETTE pal;
-    
+    arcos *pt = p_transicoes->entram;
+    arcos *pl = p_transicoes->saem;
+    int k=1,flag;
+
     if(install_allegro(SYSTEM_NONE, &errno, atexit)!=0)
         exit(EXIT_FAILURE);
-        
+
     set_color_depth(16);
     get_palette(pal);
-    
+
     buff = create_bitmap(640,480);
     if(buff == NULL)
     {
-       printf("Could not create buffer!\n");
-       exit(EXIT_FAILURE);
+        printf("Could not create buffer!\n");
+        exit(EXIT_FAILURE);
+    }
+    desenha_estados(buff);
+    desenha_transicoes(buff, p_transicoes);
+
+    while(1)
+    {
+        if(DEBUG)
+            printf("Criando arcos\n");
+        flag=1;
+        while(pt !=NULL )
+        {
+            desenha_arcos(pt->origem*2,pt->destino+k,buff,est*2,pt->custo,flag);
+            if(DEBUG)
+                printf("Lugar: %d ->  Transicao: %d\n", pt->origem, pt->destino);
+            pt=pt->prox;
+
+        }
+        flag=0;
+        while(pl !=NULL )
+        {
+            desenha_arcos(pl->origem+k,pl->destino*2,buff,est*2,pl->custo,flag);
+            if(DEBUG)
+                printf("Transicao: %d -> Lugar: %d\n", pl->origem, pl->destino);
+            pl=pl->prox;
+
+        }
+        k++;
+        p_transicoes=p_transicoes->prox;
+        if(p_transicoes==NULL)
+            break;
+        pt=p_transicoes->entram;
+        pl=p_transicoes->saem;
     }
 
     save_bitmap(IMAGENAME, buff, pal);
@@ -257,6 +303,161 @@ void gerar_imagem(void)
     allegro_exit();
 
     printf("Imagem %s salva com sucesso!\n", IMAGENAME);
+}
+
+void desenha_estados(BITMAP *buff)
+{
+    int i;
+    float raio,xi,yi,rc;
+    raio = (Y/8)*(M_PI/(M_PI+est));
+    rc = YCentro - raio*4;
+
+    if(DEBUG)
+        printf("Iniciando a funcao desenha_arcos\n");
+    for(i=0;i<est;i++)
+    {
+        if(DEBUG)
+            printf("Criando os estados.\n");
+        yi=YCentro+rc*cos((2*M_PI/est)*i);
+        xi=XCentro+rc*sin((2*M_PI/est)*i);
+        circle(buff, xi, yi, raio, CORBRANCO);
+        textprintf_ex(buff, font, (xi-18), (yi-5), CORVERDE, CORPRETO, "Est %d",i);
+    }
+    if(DEBUG)
+        printf("Estados criados com sucesso");
+}
+
+void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes)
+{
+    int i,c=0,k=1;
+    float xi,yi,rc,raio;
+    transicoes *pl = p_transicoes;
+    raio = (Y/8)*(M_PI/(M_PI+est));
+    rc = YCentro - raio*4;
+    raio = (Y/12)*(M_PI/(M_PI+est));
+
+    while(1)
+    {
+        if(DEBUG)
+            printf("Inicializando o laco para a criacao das transicoes\n");
+        for(i=k;i<tr*2;i++)
+        {
+            if(DEBUG)
+                printf("Iniciando a criacao das transicoes e ira rodar %d vezes.\n", tr);
+            yi=YCentro+rc*cos((2*M_PI/(est*2))*i);
+            xi=XCentro+rc*sin((2*M_PI/(est*2))*i);
+            line(buff, (xi), (yi)+raio, (xi), (yi)-raio, CORBRANCO);
+            if(M_PI/2<=(2*M_PI/(est*2))*i && (3*M_PI)/2>(2*M_PI/(est*2))*i)
+                textprintf_ex(buff, font, xi-10, yi-raio-12, CORVERDE, CORPRETO, "Tr%d",c++);
+            else
+            {
+                textprintf_ex(buff, font, xi-10, yi+raio+5, CORVERDE, CORPRETO, "Tr%d",c++);
+                break;
+            }
+            i++;
+        }
+    if(DEBUG)
+        printf("Criacao das transicoes realizada com sucesso.\n");
+    k = i+2;
+    if(pl->prox!=NULL)
+    {
+        pl=pl->prox;
+    }
+    else
+       break;
+    }
+}
+
+void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
+{
+    float delta, alfa, beta, phi, x1, y1, x2, y2, x3, y3, xo, yo, xf, yf, raio, xt1, yt1, xt2, yt2, rc;
+    raio=(Y/8)*(M_PI/(M_PI+est));
+    rc = YCentro - raio*4;
+
+    y1 = YCentro + rc*cos((2*M_PI/k)*qo);
+    x1 = XCentro + rc*sin((2*M_PI/k)*qo);
+    y3 = YCentro + rc*cos((2*M_PI/k)*qf);
+    x3 = XCentro + rc*sin((2*M_PI/k)*qf);
+
+    alfa=arctan(x1,y1,x3,y3);
+    y2=(y3+y1)/2 + raio * cos(alfa);
+    x2=(x3+x1)/2 - raio * sin(alfa);
+
+    if(((alfa >= 0) && (alfa <= M_PI/2)) || ((alfa >= M_PI) && (alfa <= 3*M_PI/2)))
+    {
+        beta=arctan(x3,y3,x2,y2);
+        phi=arctan(x1,y1,x2,y2);
+        xo = x1 + raio * cos(phi);
+        yo = y1 + raio * sin(phi);
+        xf = x3 + raio * cos(beta);
+        yf = y3 + raio * sin(beta);
+    }
+    else
+    {
+        alfa=arctan(x3,y3,x1,y1);
+        y2=(y3+y1)/2 + raio * cos(alfa);
+        x2=(x3+x1)/2 - raio * sin(alfa);
+        beta=arctan(x1,y1,x2,y2);
+        phi=arctan(x3,y3,x2,y2);
+        if(flag)
+        {
+            xo = x1 - raio * cos(phi);
+            yo = y1 - raio * sin(phi);
+            xf = x3;
+            yf = y3;
+        }
+        else
+        {
+            xo = x1;
+            yo = y1;
+            xf = x3 - raio * cos(beta);
+            yf = y3 - raio * sin(beta);
+        }
+    }
+
+    int coo[8];
+    coo[0] = (int)xo;
+    coo[1] = (int)yo;
+    coo[2] = (int)x2;
+    coo[3] = (int)y2;
+    coo[4] = (int)x2;
+    coo[5] = (int)y2;
+    coo[6] = (int)xf;
+    coo[7] = (int)yf;
+    spline(buff,coo,CORBRANCO);
+
+    delta=arctan(x2,y2,x3,y3);
+    xt2 = xf - (raio / 4) * (sin(delta) + cos(delta));
+    yt2 = yf + (raio / 4) * (sin(delta) - cos(delta));
+    xt1 = xf + (raio / 4) * (sin(delta) - cos(delta));
+    yt1 = yf - (raio / 4) * (sin(delta) + cos(delta));
+
+    triangle(buff, xt1, yt1, xt2, yt2, xf, yf, CORBRANCO);
+    textprintf_ex(buff, font, x2, y2, CORVERDE, CORPRETO, "%d", c);
+
+}
+
+float arctan(float x1, float y1, float x2, float y2)
+{
+    if(x2 == x1)
+    {
+        if(y2 == y1)
+            return 9.0;
+        else
+            if(y2>y1)
+                return M_PI/2.0;
+        return 3.0*M_PI/2.0;
+    }
+    if((y2 == y1) && (x2 < x1))
+        return M_PI;
+    float a = atan(fabs(y2-y1)/fabs(x2-x1));
+    if((x2 < x1) && (y2 > y1)) /* 2º quadrante*/
+        return a + M_PI/2.0;
+    if((x2 < x1) && (y2 < y1)) /* 3º quadrante*/
+        return a + M_PI;
+    if((x2 > x1) && (y2 < y1)) /* 4º quadrante*/
+        return a + 3.0*M_PI/2.0;
+    return a; /* 1º quadrante*/
 }
 
 void enviar_tokens(estados *e1, estados *e2, int num)
