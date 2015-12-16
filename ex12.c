@@ -78,7 +78,7 @@ int main(void)
     if(DEBUG)
         debug(cabeca_estados, cabeca_transicoes);
     criar_threads(&cabeca_threads, cabeca_transicoes, cabeca_estados);
-    //espera_threads(cabeca_threads);
+    espera_threads(cabeca_threads);
     gerar_imagem(cabeca_transicoes);
     return 0;
 }
@@ -150,7 +150,7 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estado
     {
         if(DEBUG)
             printf("Thread da transicao %d sendo criada.\n", pt->tr->ntr);
-        pthread_create(&(pt->nth), NULL, roda_thread, (void *)&pt);
+        pthread_create(&(pt->nth), NULL, roda_thread, (void *)pt);
         pt=pt->prox;
     }
 }
@@ -161,7 +161,7 @@ void espera_threads(tadt *p_threads)
     while(pt!=NULL)
     {
         if(DEBUG)
-            printf("Esperando thread.\n");
+            printf("Esperando thread %d.\n", pt->tr->ntr);
         pthread_join(pt->nth, NULL);
         pt=pt->prox;
     }
