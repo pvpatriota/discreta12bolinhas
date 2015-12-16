@@ -4,7 +4,8 @@
 #include <allegro.h>
 #include <math.h>
 
-#define DEBUG 1
+#define ITERACOES 10000
+#define DEBUG 0
 #define IMAGENAME "ex12.bmp"
 #define CORBRANCO (makecol(255,255,255))
 #define CORPRETO 1
@@ -56,7 +57,6 @@ void gerar_imagem(transicoes *p_transicoes);
 void desenha_estados(BITMAP *buff);
 void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes);
 void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag);
-void procurar(void);
 void enviar_tokens(estados *e1, estados *e2, int num);
 arcos *retirar_arco(arcos **p_arco);
 void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2);
@@ -75,11 +75,11 @@ int main(void)
     estados *cabeca_estados=NULL;
     tadt *cabeca_threads=NULL;
     gerar_entrada(&cabeca_estados, &cabeca_transicoes);
-    if(DEBUG)
-        debug(cabeca_estados, cabeca_transicoes);
+    debug(cabeca_estados, cabeca_transicoes);
     criar_threads(&cabeca_threads, cabeca_transicoes, cabeca_estados);
     espera_threads(cabeca_threads);
     gerar_imagem(cabeca_transicoes);
+    debug(cabeca_estados, cabeca_transicoes);
     return 0;
 }
 
@@ -169,8 +169,40 @@ void espera_threads(tadt *p_threads)
 
 void *roda_thread(void *dados)
 {
-    /*TODO: funcao que ira realizar a ativacao da troca de token e suas transferencias.*/
+    int cont=1, aux;
     tadt *pl=(tadt *)dados;
+    arcos *pa;
+    estados *pe;
+    while(cont<=ITERACOES)
+    {
+        aux=1;
+        pa=pl->tr->entram;
+        while(pa!=NULL)
+        {
+            pe=procurar_estado(pl->std, pa->origem);
+            if(pa->custo>pe->nt)
+                aux=0;
+            pa=pa->prox;
+        }
+        if(aux)
+        {
+            pa=pl->tr->entram;
+            while(pa!=NULL)
+            {
+                pe=procurar_estado(pl->std, pa->origem);
+                pe->nt-=pa->custo;
+                pa=pa->prox;
+            }
+            pa=pl->tr->saem;
+            while(pa!=NULL)
+            {
+                pe=procurar_estado(pl->std, pa->destino);
+                pe->nt+=pa->custo;
+                pa=pa->prox;
+            }
+        }
+        cont++;
+    }
     if(DEBUG)
         printf("Thread da transicao %d reportando.\n", pl->tr->ntr);
     return NULL;
@@ -575,23 +607,23 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
 
 estados *procurar_estado(estados *p_estados, int num)
 {
-    if(DEBUG)
-        printf("Iniciando funcao procurar_estado.\n");
+    /*if(DEBUG)
+        printf("Iniciando funcao procurar_estado.\n");*/
     estados *pl=p_estados;
-    if(DEBUG)
-        printf("Estamos no estado %d.\n", pl->ne);
+    /*if(DEBUG)
+        printf("Estamos no estado %d.\n", pl->ne);*/
     while(pl!=NULL)
     {
-        if(DEBUG)
-            printf("O numero do estado sendo procurado e: %d. Estamos no estado: %d.\n", num, pl->ne);
+        /*if(DEBUG)
+            printf("O numero do estado sendo procurado e: %d. Estamos no estado: %d.\n", num, pl->ne);*/
         if(pl->ne==num)
         {
-            if(DEBUG)
-                printf("Estado %d encontrado.\n", pl->ne);
+            /*if(DEBUG)
+                printf("Estado %d encontrado.\n", pl->ne);*/
             return pl;
         }
-        if(DEBUG)
-            printf("Estamos no estado %d.\n", pl->ne);
+        /*if(DEBUG)
+            printf("Estamos no estado %d.\n", pl->ne);*/
         pl=pl->prox;
     }
     if(DEBUG)
