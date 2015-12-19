@@ -73,12 +73,11 @@
 
 /* ---------------------------------------------------------------------- */
 /**
- * \file ex12.c
- * \ingroup Estruturas
- * \brief  - A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
- * \param[in] - Ne recebe o número de estados.
- * \param[in] - Nt recebe o numero de tokens de cada estado.
- * \param - O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
+ * @ingroup Estruturas
+ * @brief  - A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
+ * @param[in] - Ne recebe o número de estados.
+ * @param[in] - Nt recebe o numero de tokens de cada estado.
+ * @param - O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
  */
 typedef struct sestados /*Estrutura para armazenar estados.*/
 {
