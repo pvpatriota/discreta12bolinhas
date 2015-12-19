@@ -462,7 +462,13 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
 /**
  * @ingroup Funcoes
  * @brief - A funcao gerar_imagem será a funcao responsavel por criar a imagem ex12.bmp.
- * * @param[in] - O ponteiro *p_threads, recebe o valor inical da lista de threads.
+ * @param[in] - O ponteiro do tipo de estrutura transicoes, traz a lista de transicoes para a funcao gerar_imagem, pois é nessa lista que se encontram as informacoes que precisamos para criar a imagem.
+ * @param[in] - O ponteiro buff, do tipo de estrutura BITMAP, faz parte da biblioteca do allegro e este ponteiro é que irá realizar a criação da imagem.
+ * @param[in] - O pal, é uma variável do tipo de estrutura PALETTE e esta estrutura é usada pela biblioteca allegro.h para poder criar a imagem.
+ * @param[in] - O ponteiro pt, do tipo de estrutura arcos, receberá a quantidade de arcos que entram em uma respectiva transicao.
+ * @param[in] - O ponteiro pl, do tipo de estrutura arcos, receberá a quantidade de arcos que saem de uma respectiva transicao.
+ * @param[in] - A variável K, do tipo inteira, foi criada para auxiliar na funcao e está está sendo usada como um contador dentro da funcao FOR.
+ * @param[in] - A Variável flag, também de tipo inteira, foi criada para garantir que o programa irá alterar entra a criação dos arcos que vão dos estados para as transicoes e dos arcos que vão das transicoes para o estados.
  */
 void gerar_imagem(transicoes *p_transicoes)
 {
