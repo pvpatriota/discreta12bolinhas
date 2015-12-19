@@ -413,6 +413,17 @@ void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criac
         printf("Fim da funcao criar_estados.\n");
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao criar transicoes é a responsável por criar todas as transicoes necessárias para o correto funcionamento do programa.
+ * @param[in] - O ponteiro de ponteiro p_transicoes recebe a lista transicoes que é enviada na chamada da funcao criar_transicoes dentro da funcao main.
+ * @param[in] - O ponteiro de ponteiro p_arcos, vai receber a lista de arcos que também é enviada na chamada da funcao criar_transicoes dentro da funcao main.
+ * @param[in] - A Variável A1, do tipo inteira, recebe a quantidade de arcos que vão de estados para as transicoes.
+ * @param[in] - A Variável A2, do tipo inteira, recebe a quantidade de arcos que vão das transicoes para os estados.
+ * @param[in] - A variável NUM, também do tipo inteira, irá receber a quantidade de transicoes que foram armazenadas na variável TR.
+ * @param[in] - A variável AUX, do tipo inteiro, é utilizada para auxliar o funcionamento da funcao criar_transicoes.
+ */
 void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2, int num)
 {
     transicoes *pl=*p_transicoes, *plant;
