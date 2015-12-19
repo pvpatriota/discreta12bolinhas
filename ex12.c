@@ -232,6 +232,14 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
         printf("Funcao criar_transicoes funcionando.\n");
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao criar threads é responsável por criar as threads que iram executar o paralelismo do programa..
+ * @param[in] - O ponteiro de ponteiro **p_threads, que irá criar as threads.
+ * @param[in] - O ponteiro *p_transicoes leva para a funcao o valor da variavel cabeca_transicoes.
+ * @param[in] - O ponteiro *p_estados, leva para a funcao criar_threads o valor da variável cabeça_estados.
+ */
 
 void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estados)
 {
