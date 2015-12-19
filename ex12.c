@@ -1,9 +1,9 @@
 /***************************************************************************
  *   Programa, versão                                                      *
  *                                                                         *
- *   Breve descrição do programa                                           *
+ *   Programa que simula a rede de petri utilizando threads e listas.      *
  *                                                                         *
- *   Copyright (C) 2014  Ruben Carlo Benante <rcb [at] beco [dot] cc>      *
+ *   Copyright (C) 2015  Joao Pedro e Paulo Vitor                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,7 +26,16 @@
  *   Paulo Vitor Alves Patriota                                            *
  *   Email: paulovitorpatriota@gmail.com                                   *
  *   Webpage: http://www.upe.br                                            *
+ *   Phone: +55 (81) 9-9966-1154                                           *
+ *          +55 (81) 9-9337-5011                                           *
  ***************************************************************************/
+
+/**
+ * \file ex12.c
+ * \brief Programa que simula a rede de petri utilizando threads e listas.
+ * \author Joao Pedro Pacheco Rodrigues Almeida e Paulo Vitor Alves Patriota.
+ * \date 2015-12-19
+ */
 
 #include <stdio.h>
 #include <pthread.h>
