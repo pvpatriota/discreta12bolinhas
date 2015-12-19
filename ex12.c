@@ -43,13 +43,12 @@
 #include <allegro.h>
 #include <math.h>
 
+/* ---------------------------------------------------------------------- */
 /**
- * \file ex12.c
-* @ingroup DEFINES
-* @brief - Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
-*
+* \file ex12.c
+* \ingroup DEFINES
+* \brief - Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
 */
-
 #define ITERACOES 10000
 #define DEBUG 0
 #define IMAGENAME "ex12.bmp" /**Nome do arquivo que sera gerado pelo allegro*/
@@ -65,19 +64,21 @@
 #define XCentro X/2.0 /**Definicao do centro da tela da coordenada X*/
 #define YCentro Y/2.0 /**Definicao do centro da tela da coordenada Y*/
 
+/* ---------------------------------------------------------------------- */
 /**
  * \file ex12.c
  * @ingroup Estruturas
  * @brief - Estruturas utilizadas para o correto funcionamento do programa.
  */
 
+/* ---------------------------------------------------------------------- */
 /**
  * \file ex12.c
- * @ingroup Estruturas
- * @brief  - A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
- * @param[in] - Ne recebe o número de estados.
- * @param[in] - Nt recebe o numero de tokens de cada estado.
- * @param - O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
+ * \ingroup Estruturas
+ * \brief  - A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
+ * \param[in] - Ne recebe o número de estados.
+ * \param[in] - Nt recebe o numero de tokens de cada estado.
+ * \param - O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
  */
 typedef struct sestados /*Estrutura para armazenar estados.*/
 {
@@ -85,8 +86,8 @@ typedef struct sestados /*Estrutura para armazenar estados.*/
     struct sestados *prox;
 }estados;
 
+/* ---------------------------------------------------------------------- */
 /**
- * \file ex12.c
  * @ingroup Estruturas
  * @brief - A estrutura stransicoes cujo o nome definido foi transicoes, irá armazenar as informacoes sobre as transicoes da rede de petri.
  * @param[in] - NTR recebe o número de transicoes do arquivo de leitura.
@@ -102,8 +103,8 @@ typedef struct stransicoes /*Estrutura para armazenar transicoes.*/
     struct sarcos *saem;
 }transicoes;
 
+/* ---------------------------------------------------------------------- */
 /**
- * \file ex12.c
  * @ingroup Estruturas
  * @brief - A estrutura sarcos cujo o nome definido foi arcos, irá armazenar as informacoes sobre os arcos da rede de petri.
  * @param[in] - A variavel ORIGEM do tipo int, irá indicar o ponto de origem da transicao, ou seja, de qual transicao o token irá sair.
@@ -118,8 +119,8 @@ typedef struct sarcos /*Estrutura para armazenar arcos*/
     struct sarcos *prox;
 }arcos;
 
+/* ---------------------------------------------------------------------- */
 /**
- * \file Estrutura STADT
  * \ingroup Estruturas
  * \brief - A estrutura stadt cujo o nome definido foi tadt, irá auxiliar o programa na criação das threads.
  */
@@ -131,10 +132,10 @@ typedef struct stadt /*Estrutura para auxiliar na criacao das threads.*/
     struct stadt *prox;
 }tadt;
 
-/**
- * \file ex12.c
- * \ingroup Protótipos das funcoes
- * \brief Declaração dos protótipos das funcoes que serão utilizadas para simular a rede de petri.
+/* ---------------------------------------------------------------------- */
+/** 
+ * @ingroup Protótipos das funcoes
+ * @brief - Declaração dos protótipos das funcoes que serão utilizadas para simular a rede de petri.
  */
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes); /*Funcao respostavel por ler e administrar entrada do programa.*/
 void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estados); /*Funcao responsavel por criar as threads.*/
@@ -155,17 +156,17 @@ transicoes *procurar_transicao(transicoes *p_transicoes, int num); /*Funcao auxi
 void debug(estados *p_estados, transicoes *p_transicoes); /*Funcao para mostrar dados do programa na tela.*/
 float arctan(float x1, float y1, float x2, float y2);
 
+/* ---------------------------------------------------------------------- */
 /**
- * \file ex12.c
- * \ingroup Variaveis
- * \brief Variáveis globais declaradas para receber os dados de entrada dos arquivos de texto e para serem utilizadas principalmente no momento de gerar a imagem com o allego.
+ * @ingroup Variaveis Globais
+ * @brief - Variáveis globais declaradas para receber os dados de entrada dos arquivos de texto e para serem utilizadas principalmente no momento de gerar a imagem com o allego.
  */
 static int est, tr, aet, ate; /*Qtd de estados, qtd de transicoes, qtd de arcos estado->transicoes e qtd de arcos transicoes->estados*/
 
+/* ---------------------------------------------------------------------- */
 /**
- * \file ex12.c
- * \ingroup Funcao principal.
- * \brief Funcao Main do código, que será a responsável por chamar as funcoes nas devidas ordens para o correto funcionamento.
+ * @ingroup Main.
+ * @brief - Funcao Main do código, que será a responsável por chamar as funcoes nas devidas ordens para o correto funcionamento.
  *
  * A funcao main, chamara as seguintes funcoes respectivamente:
  * Gerar_entrada que ira receber todos os dados dos arquivos de texto disponibilizados.
@@ -190,11 +191,13 @@ int main(void)
     debug(cabeca_estados, cabeca_transicoes);
     return 0;
 }
-
+/* ---------------------------------------------------------------------- */
 /**
- * \file ex12.c
- * \ingroup groupunique
- * \brief A funcao gerar_entrada é responsável por receber os dados dos arquivos de texto que foram disponibilizados, realizam a leitura dos mesmos e armazenam os seus dados nas variavéis globais.
+ * @ingroup Funcoes
+ * @brief - A funcao gerar_entrada é responsável por receber os dados dos arquivos de texto que foram disponibilizados, realizam a leitura dos mesmos e armazenam os seus dados nas variavéis globais.
+ * @param[in] - Ponteiro que aponta pra ponteiro da estrutura estados chamado p_estados.
+ * @param[in] - Ponteiro que aponta para outro ponteiro da estrutura transicoes chamado p_transicoes.
+ * @param[in] - Variável ECT do tipo inteiro que irá armazenar a quantidade de estados que possuem tokens.
  */
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
 {
@@ -228,6 +231,7 @@ void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
     if(DEBUG)
         printf("Funcao criar_transicoes funcionando.\n");
 }
+
 
 void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estados)
 {
