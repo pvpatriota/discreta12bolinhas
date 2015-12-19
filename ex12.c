@@ -194,7 +194,7 @@ int main(void)
 
 /**
  * \file ex12.c
- * \ingroup Funcoes
+ * \ingroup groupunique
  * \brief A funcao gerar_entrada é responsável por receber os dados dos arquivos de texto que foram disponibilizados, realizam a leitura dos mesmos e armazenam os seus dados nas variavéis globais.
  */
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes)
