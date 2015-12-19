@@ -44,7 +44,6 @@
 #include <math.h>
 
 /**
-* \file DEFINES
 * \ingroup GroupUnique
 * \brief Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
 *
@@ -66,17 +65,15 @@
 #define YCentro Y/2.0 /**Definicao do centro da tela da coordenada Y*/
 
 /**
- * \file Declaração das Estruturas utilizadas para a simulação da rede
  * \ingroup GroupUnique
  * \brief Estruturas utilizadas para o correto funcionamento do programa.
  */
 
 /**
- * \file Estrutura SEstados
  * \ingroup GroupUnique
  * \brief A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
- * \param Ne recebe o número de estados.
- * \param Nt recebe o numero de tokens de cada estado.
+ * \param[in] Ne recebe o número de estados.
+ * \param[in] Nt recebe o numero de tokens de cada estado.
  * \param O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
  */
 typedef struct sestados /*Estrutura para armazenar estados.*/
@@ -86,7 +83,6 @@ typedef struct sestados /*Estrutura para armazenar estados.*/
 }estados;
 
 /**
- * \file Estrutura STransicoes
  * \ingroup GroupUnique
  * \brief A estrutura stransicoes cujo o nome definido foi transicoes, irá armazenar as informacoes sobre as transicoes da rede de petri.
  * \param NTR recebe o número de transicoes do arquivo de leitura.
@@ -104,7 +100,6 @@ typedef struct stransicoes /*Estrutura para armazenar transicoes.*/
 }transicoes;
 
 /**
- * \file Estrutura SArcos
  * \ingroup GroupUnique
  * \brief A estrutura sarcos cujo o nome definido foi arcos, irá armazenar as informacoes sobre os arcos da rede de petri.
  * \param A variavel ORIGEM do tipo int, irá indicar o ponto de origem da transicao, ou seja, de qual transicao o token irá sair.
@@ -120,7 +115,6 @@ typedef struct sarcos /*Estrutura para armazenar arcos*/
 }arcos;
 
 /**
- * \file Estrutura STADT
  * \ingroup GroupUnique
  * \brief A estrutura stadt cujo o nome definido foi tadt, irá auxiliar o programa na criação das threads.
  */
