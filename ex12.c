@@ -119,9 +119,9 @@ typedef struct sarcos /*Estrutura para armazenar arcos*/
 }arcos;
 
 /**
- * \file ex12.c
+ * \file Estrutura STADT
  * \ingroup Estruturas
- * \brief A estrutura stadt cujo o nome definido foi tadt, irá auxiliar o programa na criação das threads.
+ * \brief - A estrutura stadt cujo o nome definido foi tadt, irá auxiliar o programa na criação das threads.
  */
 typedef struct stadt /*Estrutura para auxiliar na criacao das threads.*/
 {
