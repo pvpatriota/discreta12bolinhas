@@ -45,8 +45,8 @@
 
 /**
  * \file ex12.c
-* \ingroup DEFINES
-* \brief Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
+* @ingroup DEFINES
+* @brief - Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
 *
 */
 
@@ -67,17 +67,17 @@
 
 /**
  * \file ex12.c
- * \ingroup Estruturas
- * \brief Estruturas utilizadas para o correto funcionamento do programa.
+ * @ingroup Estruturas
+ * @brief - Estruturas utilizadas para o correto funcionamento do programa.
  */
 
 /**
  * \file ex12.c
- * \ingroup Estruturas
- * \brief A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
- * \param[in] Ne recebe o número de estados.
- * \param[in] Nt recebe o numero de tokens de cada estado.
- * \param O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
+ * @ingroup Estruturas
+ * @brief  - A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
+ * @param[in] - Ne recebe o número de estados.
+ * @param[in] - Nt recebe o numero de tokens de cada estado.
+ * @param - O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
  */
 typedef struct sestados /*Estrutura para armazenar estados.*/
 {
@@ -87,14 +87,13 @@ typedef struct sestados /*Estrutura para armazenar estados.*/
 
 /**
  * \file ex12.c
- * \ingroup Estruturas
- * \brief A estrutura stransicoes cujo o nome definido foi transicoes, irá armazenar as informacoes sobre as transicoes da rede de petri.
- * \param NTR recebe o número de transicoes do arquivo de leitura.
- * \param O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura stransicoes.
- * \param O ponteiro entram é um ponteiro de estrutura sarcos e este ponteiro é responsavel por armazenar a quantidade de arcos que entram na respectiva transicao.
- * \param O ponteiro saem é um ponteiro de estrutura sarcos e este ponteiro é responsável por armazenar a quantidade de arcos que saem da respectiva transicao.
+ * @ingroup Estruturas
+ * @brief - A estrutura stransicoes cujo o nome definido foi transicoes, irá armazenar as informacoes sobre as transicoes da rede de petri.
+ * @param[in] - NTR recebe o número de transicoes do arquivo de leitura.
+ * @param[out] -  O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura stransicoes.
+ * @param[out] -  O ponteiro entram é um ponteiro de estrutura sarcos e este ponteiro é responsavel por armazenar a quantidade de arcos que entram na respectiva transicao.
+ * @param[out] - O ponteiro saem é um ponteiro de estrutura sarcos e este ponteiro é responsável por armazenar a quantidade de arcos que saem da respectiva transicao.
  */
-
 typedef struct stransicoes /*Estrutura para armazenar transicoes.*/
 {
     int ntr; /*Numero da transicao*/
@@ -105,12 +104,12 @@ typedef struct stransicoes /*Estrutura para armazenar transicoes.*/
 
 /**
  * \file ex12.c
- * \ingroup Estruturas
- * \brief A estrutura sarcos cujo o nome definido foi arcos, irá armazenar as informacoes sobre os arcos da rede de petri.
- * \param A variavel ORIGEM do tipo int, irá indicar o ponto de origem da transicao, ou seja, de qual transicao o token irá sair.
- * \param A variável DESTINO do tipo int, irá indicar o ponto de chegada de uma transicao, ou seja, em qual transicao o token irá chegar.
- * \param A variável CUSTO do tipo int, irá indicar o custo da transicao, ou seja, a quantidade de tokens que uma determinada transicao irá enviar.
- * \param O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro é uma variável da estrutura stadt, que é a estrutura responsável pelo auxilo na hora de criar as threads.
+ * @ingroup Estruturas
+ * @brief - A estrutura sarcos cujo o nome definido foi arcos, irá armazenar as informacoes sobre os arcos da rede de petri.
+ * @param[in] - A variavel ORIGEM do tipo int, irá indicar o ponto de origem da transicao, ou seja, de qual transicao o token irá sair.
+ * @param[in] - A variável DESTINO do tipo int, irá indicar o ponto de chegada de uma transicao, ou seja, em qual transicao o token irá chegar.
+ * @param[in] - A variável CUSTO do tipo int, irá indicar o custo da transicao, ou seja, a quantidade de tokens que uma determinada transicao irá enviar.
+ * @param[out] - O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro é uma variável da estrutura stadt, que é a estrutura responsável pelo auxilo na hora de criar as threads.
  */
 
 typedef struct sarcos /*Estrutura para armazenar arcos*/
