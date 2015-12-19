@@ -43,9 +43,16 @@
 #include <allegro.h>
 #include <math.h>
 
+/**
+* \file DEFINES
+* \ingroup GroupUnique
+* \brief Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
+*
+*/
+
 #define ITERACOES 10000
 #define DEBUG 0
-#define IMAGENAME "ex12.bmp"
+#define IMAGENAME "ex12.bmp" /**Nome do arquivo que sera gerado pelo allegro*/
 #define CORBRANCO (makecol(255,255,255))
 #define CORPRETO 1
 #define CORCINZA (makecol(160,160,160))
@@ -53,16 +60,40 @@
 #define CORVERDE (makecol(0, 255, 0))
 #define CORAMARELO (makecol(255,255,100))
 #define CORVERMELHO (makecol(255, 0, 0))
-#define X 640
-#define Y 480
-#define XCentro X/2.0
-#define YCentro Y/2.0
+#define X 640 /**Definicao do tamanho X da tela */
+#define Y 480 /**Definicao do tamanho Y da tela */
+#define XCentro X/2.0 /**Definicao do centro da tela da coordenada X*/
+#define YCentro Y/2.0 /**Definicao do centro da tela da coordenada Y*/
 
+/**
+ * \file Declaração das Estruturas utilizadas para a simulação da rede
+ * \ingroup GroupUnique
+ * \brief Estruturas utilizadas para o correto funcionamento do programa.
+ */
+
+/**
+ * \file Estrutura SEstados
+ * \ingroup GroupUnique
+ * \brief A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
+ * \param Ne recebe o número de estados.
+ * \param Nt recebe o numero de tokens de cada estado.
+ * \param O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
+ */
 typedef struct sestados /*Estrutura para armazenar estados.*/
 {
     int ne, nt; /*Numero do estado e numero de tokens, respectivamente.*/
     struct sestados *prox;
 }estados;
+
+/**
+ * \file Estrutura STransicoes
+ * \ingroup GroupUnique
+ * \brief A estrutura stransicoes cujo o nome definido foi transicoes, irá armazenar as informacoes sobre as transicoes da rede de petri.
+ * \param NTR recebe o número de transicoes do arquivo de leitura.
+ * \param O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura stransicoes.
+ * \param O ponteiro entram é um ponteiro de estrutura sarcos e este ponteiro é responsavel por armazenar a quantidade de arcos que entram na respectiva transicao.
+ * \param O ponteiro saem é um ponteiro de estrutura sarcos e este ponteiro é responsável por armazenar a quantidade de arcos que saem da respectiva transicao.
+ */
 
 typedef struct stransicoes /*Estrutura para armazenar transicoes.*/
 {
@@ -72,12 +103,27 @@ typedef struct stransicoes /*Estrutura para armazenar transicoes.*/
     struct sarcos *saem;
 }transicoes;
 
+/**
+ * \file Estrutura SArcos
+ * \ingroup GroupUnique
+ * \brief A estrutura sarcos cujo o nome definido foi arcos, irá armazenar as informacoes sobre os arcos da rede de petri.
+ * \param A variavel ORIGEM do tipo int, irá indicar o ponto de origem da transicao, ou seja, de qual transicao o token irá sair.
+ * \param A variável DESTINO do tipo int, irá indicar o ponto de chegada de uma transicao, ou seja, em qual transicao o token irá chegar.
+ * \param A variável CUSTO do tipo int, irá indicar o custo da transicao, ou seja, a quantidade de tokens que uma determinada transicao irá enviar.
+ * \param O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro é uma variável da estrutura stadt, que é a estrutura responsável pelo auxilo na hora de criar as threads.
+ */
+
 typedef struct sarcos /*Estrutura para armazenar arcos*/
 {
     int origem, destino, custo; /*ponto de origem, destino e custo para transicao ou quantidade de token que a transicao ira enviar.*/
     struct sarcos *prox;
 }arcos;
 
+/**
+ * \file Estrutura STADT
+ * \ingroup GroupUnique
+ * \brief A estrutura stadt cujo o nome definido foi tadt, irá auxiliar o programa na criação das threads.
+ */
 typedef struct stadt /*Estrutura para auxiliar na criacao das threads.*/
 {
     pthread_t nth;
