@@ -159,13 +159,35 @@ float arctan(float x1, float y1, float x2, float y2);
 /* ---------------------------------------------------------------------- */
 /**
  * @ingroup Variaveis Globais
- * @brief - Variáveis globais declaradas para receber os dados de entrada dos arquivos de texto e para serem utilizadas principalmente no momento de gerar a imagem com o allego.
+ * @brief - Variável EST, do tipo inteira e que recebe a quantidade de estados, declarada como global para receber os dados de entrada dos arquivos de texto e posteriormente ser utilizada para criar a imagem ex12.bmp com o allegro.
  */
-static int est, tr, aet, ate; /*Qtd de estados, qtd de transicoes, qtd de arcos estado->transicoes e qtd de arcos transicoes->estados*/
+static int est; /**Qtd de Estados */
 
 /* ---------------------------------------------------------------------- */
 /**
- * @ingroup Main.
+ * @ingroup Variaveis Globais
+ * @brief - Variável TR, do tipo inteira e que recebe a quantidade de transicoes, declara como global para receber os dados de entrada dos arquivos de texto e posteriormente ser utilizada para criar a imagem ex12.bmp com o allegro.
+ */
+
+static int tr; /**Quantidade de transicoes */
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Variaveis Globais
+ * @brief - Variável AET, do tipo inteira e que recebe a quantidade de arcos que vão dos estados para as transicoes, declarada como global para receber os dados de entrada dos arquivos de texto e posteriormente ser utilizada para criar a imagem ex12.bmp com o allegro.
+ */
+
+static int aet; /** Quantidade de arcos que vão dos estados para as transicoes */
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Variaveis Globais
+ * @brief - Variável ATE, do tipo inteira e que recebe a quantidade de arcos que vão das transicoes para os estados, declarada como global para receber os dados de entrada dos arquivos de texto e posteriormente ser utilizada para criar a imagem ex12.bmp com o allegro.
+ */
+
+static int ate; /**Quantidade de arcos vão das transicoes para os estados*/
+
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcao Main.
  * @brief - Funcao Main do código, que será a responsável por chamar as funcoes nas devidas ordens para o correto funcionamento.
  *
  * A funcao main, chamara as seguintes funcoes respectivamente:
