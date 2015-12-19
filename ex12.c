@@ -348,6 +348,14 @@ void *roda_thread(void *dados)
     return NULL;
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao criar_estados, tem como finalidade criar a quantidade de estados que foram lidos a partir da entrada dos arquivos de textos que foram disponibilizados.
+ * @param[in] - O ponteiro de ponteiro p_estados, vai levar a lista de estados que serão criados com esta funcao.
+ * @param[in] - A variável NUM, do tipo int, tem armazenada dentro de si a quantidade de estados que deveram ser criados nesta funcao e que serao organizados pela lista que utiliza o ponteiro p_estados.
+ * @param[in] - A variável I, do tipo inteiro é utilizada apenas como uma variável de controle para a funcao FOR.
+ */
 void criar_estados(estados **p_estados, int num) /*Funcao responsavel pela criacao dos estados.*/
 {
     if(DEBUG)
