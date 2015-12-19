@@ -279,7 +279,12 @@ void criar_threads(tadt **p_threads, transicoes *p_transicoes, estados *p_estado
         pt=pt->prox;
     }
 }
-
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao espera_threads tem como finalidade esperar que as threads retornem o status de concluidas..
+ * @param[in] - O ponteiro *p_threads, recebe o valor inical da lista de threads.
+ */
 void espera_threads(tadt *p_threads)
 {
     tadt *pt=p_threads;
@@ -291,6 +296,16 @@ void espera_threads(tadt *p_threads)
         pt=pt->prox;
     }
 }
+
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao roda thread é a funcao responsável por rodar as threas que foram criadas na funcao criar_threads.
+ * @param[in] - A variável cont é utilizada para definir um loop com o while.
+ * @param[in] - A variável aux é utilizada para controle e esta irá definir a possibilidade ou não de uma transicao ser ativada.
+ * @param[in] - O ponteiro *pa do tipo de estrutura arcos, irá receber a quantidade de transicoes que entram.
+ * @param[in] - O ponteiro *pe do tipo de estrutura estados, irá receber os dados que a funcao procurar_estados irá lhe retornar.
+ */
 
 void *roda_thread(void *dados)
 {
