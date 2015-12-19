@@ -458,6 +458,12 @@ void criar_transicoes(transicoes **p_transicoes, arcos **p_arcos, int a1, int a2
         printf("Fim da funcao criar_transicoes.\n");
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao gerar_imagem será a funcao responsavel por criar a imagem ex12.bmp.
+ * * @param[in] - O ponteiro *p_threads, recebe o valor inical da lista de threads.
+ */
 void gerar_imagem(transicoes *p_transicoes)
 {
     BITMAP *buff;
