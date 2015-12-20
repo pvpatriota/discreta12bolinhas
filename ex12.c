@@ -710,6 +710,13 @@ float arctan(float x1, float y1, float x2, float y2)
     return a; /* 1º quadrante*/
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao *retirar_arco é uma função que só é utilizada caso se tenha a intenção ou seja necessário remover um determinado arco.
+ * @param[in] - O ponteiro de ponteiro p_arcos, da estrutura arcos, vai trazer a lista dos arcos para que possa ser procurado o que deseja e removido.
+ * @return Ele retorna a lista com o arco desejado removido da mesma.
+ * */
 arcos *retirar_arco(arcos **p_arco) /*Esta funcao so pode ser utilizada caso se a intencao seja retirar a cabeca da lista.*/
 {
     if(DEBUG)
