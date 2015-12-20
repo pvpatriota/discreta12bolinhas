@@ -924,6 +924,18 @@ void relacionar_tokens(estados *p_estados, int num)
     }
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao DEBUG tem como finalidade mostrar um status atual do funcionamento do programa. Com isso é possível que o programador do mesmo saiba o que está acontecendo durante o funcionamento do programa e possa corrigir qualquer tipo de bugs que possam aparecer.
+ * @param[in] - O ponteiro p_estados recebe a lista de estados completa que é enviada na chamada da função, onde será utilizada para mostrar as estatisticas dos estados.
+ * @param[in] - O ponteiro p_transicoes recebe a lista de transicoes completa que é enviada na chamada da função, onde será utilizada para mostrar as estatísticas das transicoes.
+ * @param[in] - O ponteiro pl, do tipo de estrutura estados, vai receber a quantidade de elementos da lista de estados.
+ * @param[in] - O ponteiro plt, do tipo de estrutura transicoes, vai receber a quantidade de transicoes existentes.
+ * @param[in] - O ponteiro pl, tanto do tipo estrutura de estados como do tipo estrutura de transicoes, sera usada para apontar imediatamente para o elemento anterior da lista.
+ * @param[in] - O ponteiro pla, to tipo de estrutura arcos, vai ser utilizado para receber os valores dos arcos, onde entram, onde saem, a origem, o destino e o custo dos mesmos.
+ * 
+ */
 void debug(estados *p_estados, transicoes *p_transicoes)
 {
     estados *pl=p_estados, *plant;
