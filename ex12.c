@@ -603,6 +603,11 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes)
     }
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao desenha_arcos tem como finalidade desenhar os arcos que saem dos estados e tem destino nas transicoes e desenhar os arcos que saem das transicoes e tem destino dos estados.
+ */
 void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
 {
     float delta, alfa, beta, phi, x1, y1, x2, y2, x3, y3, xo, yo, xf, yf, raio, xt1, yt1, xt2, yt2, rc;
