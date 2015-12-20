@@ -58,34 +58,74 @@
 /* ---------------------------------------------------------------------- */
 /**
 * @ingroup MACROS 
-* @brief - Este define foi utilizado para padronizar a saida do arquivo de imagem..
+* @brief - Este define foi utilizado para padronizar a saida do arquivo de imagem.
 */
 #define IMAGENAME "ex12.bmp" /**Nome do arquivo que sera gerado pelo allegro*/
 /* ---------------------------------------------------------------------- */
 /**
 * @ingroup MACROS 
-* @brief - Defines para facilitar o uso das cores no allegro.
+* @brief - Defines para facilitar o uso da cor branca no allegro.
 */
 #define CORBRANCO (makecol(255,255,255))
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines para facilitar o uso da cor preta no allegro.
+*/
 #define CORPRETO 1
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines para facilitar o uso da cor cinza no allegro.
+*/
 #define CORCINZA (makecol(160,160,160))
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines para facilitar o uso da cor azul no allegro.
+*/
 #define CORAZUL (makecol(0, 0, 255))
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines para facilitar o uso da cor verde no allegro.
+*/
 #define CORVERDE (makecol(0, 255, 0))
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines para facilitar o uso da cor amarela no allegro.
+*/
 #define CORAMARELO (makecol(255,255,100))
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines para facilitar o uso da cor vermelha no allegro.
+*/
 #define CORVERMELHO (makecol(255, 0, 0))
 /* ---------------------------------------------------------------------- */
 /**
 * @ingroup MACROS 
-* @brief - Defines que informam qual o tamanho da tela para serem utilizados no allegro.
+* @brief - Defines que informam qual o tamanho da tela horizontalmente a serutilizada pelo allegro.
 */
 #define X 640 /**Definicao do tamanho X da tela */
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines que informa qual o tamanho da tela verticalmente a ser utilizada pelo allegro.
+*/
 #define Y 480 /**Definicao do tamanho Y da tela */
 /* ---------------------------------------------------------------------- */
 /**
 * @ingroup MACROS 
-* @brief - Defines que dizem qual é o centro da tela baseado nos valores de X e de Y.
+* @brief - Defines que dizem qual é o centro da tela horizontal baseado no valor de X.
 */
 #define XCentro X/2.0 /**Definicao do centro da tela da coordenada X*/
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines que dizem qual é o centro da tela vertical baseado no valor de Y.
+*/
 #define YCentro Y/2.0 /**Definicao do centro da tela da coordenada Y*/
 
 /* ---------------------------------------------------------------------- */
