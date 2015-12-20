@@ -217,6 +217,8 @@ estados *procurar_estado(estados *p_estados, int num); /*Funcao auxiliar para bu
 transicoes *procurar_transicao(transicoes *p_transicoes, int num); /*Funcao auxiliar para procurar transicao.*/
 void debug(estados *p_estados, transicoes *p_transicoes); /*Funcao para mostrar dados do programa na tela.*/
 float arctan(float x1, float y1, float x2, float y2);
+float lcos(float x1, float y1, float x2, float y2);
+float lsin(float x1, float y1, float x2, float y2);
 
 /* ---------------------------------------------------------------------- */
 /**
