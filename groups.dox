@@ -1,0 +1,17 @@
+@ingroups Funcoes 
+@details Grupo onde se encontram todas as funções que foram utilizadas no programa.
+
+@ingroup
+@details Grupo onde se encontram os protótipos de todas as funcoes utilizadas.
+
+@ingroup Estruturas
+@details Grupo onde se encontram todas as estruturas que foram utilizadas no programa.
+
+@ingroup MACROS
+@details Grupo onde se encontram as macros que foram definidas para serem utilizadas durante o programa.
+
+@ingroup Variaveis Globais
+@details Grupo onde se encontram as variáveis globais definidas para serem utlizadas durante o programa.
+
+@ingroup Funcao Main   
+@details Grupo da funcao principal do programa.
