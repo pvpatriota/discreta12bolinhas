@@ -45,12 +45,27 @@
 
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup DEFINES
-* @brief - Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
+* @ingroup MACROS 
+* @brief - Quantidade de INTERAÇÕES 
 */
 #define ITERACOES 10000
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Define para ativar o DEBUG do código.
+*/
 #define DEBUG 0
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Este define foi utilizado para padronizar a saida do arquivo de imagem..
+*/
 #define IMAGENAME "ex12.bmp" /**Nome do arquivo que sera gerado pelo allegro*/
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines para facilitar o uso das cores no allegro.
+*/
 #define CORBRANCO (makecol(255,255,255))
 #define CORPRETO 1
 #define CORCINZA (makecol(160,160,160))
@@ -58,8 +73,18 @@
 #define CORVERDE (makecol(0, 255, 0))
 #define CORAMARELO (makecol(255,255,100))
 #define CORVERMELHO (makecol(255, 0, 0))
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines que informam qual o tamanho da tela para serem utilizados no allegro.
+*/
 #define X 640 /**Definicao do tamanho X da tela */
 #define Y 480 /**Definicao do tamanho Y da tela */
+/* ---------------------------------------------------------------------- */
+/**
+* @ingroup MACROS 
+* @brief - Defines que dizem qual é o centro da tela baseado nos valores de X e de Y.
+*/
 #define XCentro X/2.0 /**Definicao do centro da tela da coordenada X*/
 #define YCentro Y/2.0 /**Definicao do centro da tela da coordenada Y*/
 
