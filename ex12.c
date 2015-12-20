@@ -45,87 +45,87 @@
 
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Quantidade de INTERAÇÕES 
-*/
+ * @ingroup MACROS 
+ * @brief - Quantidade de INTERAÇÕES 
+ */
 #define ITERACOES 10000
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Define para ativar o DEBUG do código.
-*/
+ * @ingroup MACROS 
+ * @brief - Define para ativar o DEBUG do código.
+ */
 #define DEBUG 0
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Este define foi utilizado para padronizar a saida do arquivo de imagem.
-*/
+ * @ingroup MACROS 
+ * @brief - Este define foi utilizado para padronizar a saida do arquivo de imagem.
+ */
 #define IMAGENAME "ex12.bmp" /**Nome do arquivo que sera gerado pelo allegro*/
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines para facilitar o uso da cor branca no allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines para facilitar o uso da cor branca no allegro.
+ */
 #define CORBRANCO (makecol(255,255,255))
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines para facilitar o uso da cor preta no allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines para facilitar o uso da cor preta no allegro.
+ */
 #define CORPRETO 1
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines para facilitar o uso da cor cinza no allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines para facilitar o uso da cor cinza no allegro.
+ */
 #define CORCINZA (makecol(160,160,160))
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines para facilitar o uso da cor azul no allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines para facilitar o uso da cor azul no allegro.
+ */
 #define CORAZUL (makecol(0, 0, 255))
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines para facilitar o uso da cor verde no allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines para facilitar o uso da cor verde no allegro.
+ */
 #define CORVERDE (makecol(0, 255, 0))
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines para facilitar o uso da cor amarela no allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines para facilitar o uso da cor amarela no allegro.
+ */
 #define CORAMARELO (makecol(255,255,100))
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines para facilitar o uso da cor vermelha no allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines para facilitar o uso da cor vermelha no allegro.
+ */
 #define CORVERMELHO (makecol(255, 0, 0))
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines que informam qual o tamanho da tela horizontalmente a serutilizada pelo allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines que informam qual o tamanho da tela horizontalmente a serutilizada pelo allegro.
+ */
 #define X 640 /**Definicao do tamanho X da tela */
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines que informa qual o tamanho da tela verticalmente a ser utilizada pelo allegro.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines que informa qual o tamanho da tela verticalmente a ser utilizada pelo allegro.
+ */
 #define Y 480 /**Definicao do tamanho Y da tela */
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines que dizem qual é o centro da tela horizontal baseado no valor de X.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines que dizem qual é o centro da tela horizontal baseado no valor de X.
+ */
 #define XCentro X/2.0 /**Definicao do centro da tela da coordenada X*/
 /* ---------------------------------------------------------------------- */
 /**
-* @ingroup MACROS 
-* @brief - Defines que dizem qual é o centro da tela vertical baseado no valor de Y.
-*/
+ * @ingroup MACROS 
+ * @brief - Defines que dizem qual é o centro da tela vertical baseado no valor de Y.
+ */
 #define YCentro Y/2.0 /**Definicao do centro da tela da coordenada Y*/
 
 /* ---------------------------------------------------------------------- */
@@ -672,18 +672,22 @@ void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes)
 /**
  * @ingroup Funcoes
  * @brief - A funcao desenha_arcos tem como finalidade desenhar os arcos que saem dos estados e tem destino nas transicoes e desenhar os arcos que saem das transicoes e tem destino dos estados.
+ * @param[in] - A variável qo, do tipo inteira, indica a origem do arco.
+ * @param[in] - A variável qf, do tipo inteira, indica o destino do arco que teve origem em qo.
+ * @param[in] - O ponteiro buff, do tipo BITMAP, irá criar a imagem.
+ * @param[in] - A variável K, do tipo inteira, receberá a quantidade de estados multiplicado por dois, para poder realizar a alternação das transicoes de forma correta.
+ * @param[in] - A varíável C, do tipo inteira, irá receber o custo de cada arco.
+ * @param[in] - A variável flag, do intpo inteira também, será uma variável de auxilo, para fazer com que o programa alterne entra os arcos que saem dos estados e vão para as transicoes e dos arcos que saem das transicoes e vão para os estados.
  */
 void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
 {
-    float delta, alfa, beta, phi, x1, y1, x2, y2, x3, y3, xo, yo, xf, yf, raio, xt1, yt1, xt2, yt2, rc;
-    raio=(Y/8)*(M_PI/(M_PI+est));
+    float si,co, alfa,beta, phi, x1, y1, x2, y2, x3, y3, xo, yo, xf, yf, raio, xt1, yt1, xt2, yt2, rc;
+    raio=(Y/8)*(M_PI/(M_PI+(k/2)));
     rc = YCentro - raio*4;
-
     y1 = YCentro + rc*cos((2*M_PI/k)*qo);
     x1 = XCentro + rc*sin((2*M_PI/k)*qo);
     y3 = YCentro + rc*cos((2*M_PI/k)*qf);
     x3 = XCentro + rc*sin((2*M_PI/k)*qf);
-
     alfa=arctan(x1,y1,x3,y3);
     y2=(y3+y1)/2 + raio * cos(alfa);
     x2=(x3+x1)/2 - raio * sin(alfa);
@@ -692,10 +696,20 @@ void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
     {
         beta=arctan(x3,y3,x2,y2);
         phi=arctan(x1,y1,x2,y2);
-        xo = x1 + raio * cos(phi);
-        yo = y1 + raio * sin(phi);
-        xf = x3 + raio * cos(beta);
-        yf = y3 + raio * sin(beta);
+        if(flag)
+        {
+            xo = x1 + raio * cos(phi);
+            yo = y1 + raio * sin(phi);
+            xf = x3;
+            yf = y3;
+        }
+        else
+        {
+            xo = x1;
+            yo = y1;
+            xf = x3 + raio * cos(beta);
+            yf = y3 + raio * sin(beta);
+        }
     }
     else
     {
@@ -719,7 +733,6 @@ void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
             yf = y3 - raio * sin(beta);
         }
     }
-
     int coo[8];
     coo[0] = (int)xo;
     coo[1] = (int)yo;
@@ -731,17 +744,29 @@ void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
     coo[7] = (int)yf;
     spline(buff,coo,CORBRANCO);
 
-    delta=arctan(x2,y2,x3,y3);
-    xt2 = xf - (raio / 4) * (sin(delta) + cos(delta));
-    yt2 = yf + (raio / 4) * (sin(delta) - cos(delta));
-    xt1 = xf + (raio / 4) * (sin(delta) - cos(delta));
-    yt1 = yf - (raio / 4) * (sin(delta) + cos(delta));
-
-    triangle(buff, xt1, yt1, xt2, yt2, xf, yf, CORBRANCO);
+    si=lsin(x2,y2,xf,yf);
+    co=lcos(x2,y2,xf,yf);
+    xt1 = xf - (raio / 4) * (si + co);
+    yt1 = yf + (raio / 4) * (co - si);
+    xt2 = xf + (raio / 4) * (si - co);
+    yt2 = yf - (raio / 4) * (si + co);
+    triangle(buff, xf, yf, xt1, yt1, xt2, yt2, CORBRANCO);
     textprintf_ex(buff, font, x2, y2, CORVERDE, CORPRETO, "%d", c);
 
 }
+float lcos(float x1, float y1, float x2, float y2)
+{
+    if(x1==0 && x2 == 0 && y1 == 0 && y2 == 0)
+        return ~0;
+    return ((x2-x1)/sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)));
+}
 
+float lsin(float x1, float y1, float x2, float y2)
+{
+    if(x1==0 && x2 == 0 && y1 == 0 && y2 == 0)
+        return ~0;
+    return ((y2-y1)/sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)));
+}
 /* ---------------------------------------------------------------------- */
 /**
  * @ingroup Funcoes
