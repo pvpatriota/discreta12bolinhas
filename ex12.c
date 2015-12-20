@@ -527,6 +527,12 @@ void gerar_imagem(transicoes *p_transicoes)
     printf("Imagem %s salva com sucesso!\n", IMAGENAME);
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A função desenha_estados, é a função responsável por pegar a quantidade de estados que foram lidos dos arquivos de textos fornecidos e através de um código matemático, distribuir os estados pelo tamanho da tela. Os estados possuem formato de cículo.
+ * @param[out] - O ponteiro buff, do tipo BITMAP, é um ponteiro que se caracteriza como um sentido de saída, já que ele vai ser instanciado para criar um arquivo que será entregue e posteriormente visualizado pelo usuário..
+ */
 void desenha_estados(BITMAP *buff)
 {
     int i;
