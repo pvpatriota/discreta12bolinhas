@@ -685,6 +685,7 @@ void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
  * @param[in] - A variável Y1 do tipo float, indica a posicao inicial do arco que sai do estado ou da transico no eixo vertical.
  * @param[in] - A variável X2 do tipo float, indica a posicao final do arco que chega no estado ou transicao do eixo horizontal.
  * @param[in] - A variável Y2 do tipo float, indica a posicao final do arco que chega no estado ou transicao do eixo vertical.
+ * @return Valor retornado a indicando qual quadrante se encontra.
  * */
 float arctan(float x1, float y1, float x2, float y2)
 {
