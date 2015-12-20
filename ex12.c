@@ -229,21 +229,21 @@ static int est; /**Qtd de Estados */
 
 /* ---------------------------------------------------------------------- */
 /**
- * @ingroup Variaveis Globais
+ * @ingroup Variaveis_Globais
  * @brief - Variável TR, do tipo inteira e que recebe a quantidade de transicoes, declara como global para receber os dados de entrada dos arquivos de texto e posteriormente ser utilizada para criar a imagem ex12.bmp com o allegro.
  */
 
 static int tr; /**Quantidade de transicoes */
 /* ---------------------------------------------------------------------- */
 /**
- * @ingroup Variaveis Globais
+ * @ingroup Variaveis_Globais
  * @brief - Variável AET, do tipo inteira e que recebe a quantidade de arcos que vão dos estados para as transicoes, declarada como global para receber os dados de entrada dos arquivos de texto e posteriormente ser utilizada para criar a imagem ex12.bmp com o allegro.
  */
 
 static int aet; /** Quantidade de arcos que vão dos estados para as transicoes */
 /* ---------------------------------------------------------------------- */
 /**
- * @ingroup Variaveis Globais
+ * @ingroup Variaveis_Globais
  * @brief - Variável ATE, do tipo inteira e que recebe a quantidade de arcos que vão das transicoes para os estados, declarada como global para receber os dados de entrada dos arquivos de texto e posteriormente ser utilizada para criar a imagem ex12.bmp com o allegro.
  */
 
