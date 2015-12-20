@@ -870,6 +870,14 @@ estados *procurar_estado(estados *p_estados, int num)
     return pl;
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao procurar transicoes vai procurar uma determinada transicao dentro da lista de transicoes.
+ * @param[in] - O ponteiro p_transicoes recebe a lista de transicoes que é enviada na chamada da funcao procurar_transicoes.
+ * @param[in] - A Variável NUM, do tipo inteira, recebe a quantidade de transicoes existentes.
+ * @return Retorna a transicao desejada como posicao atual da lista.
+ */
 transicoes *procurar_transicao(transicoes *p_transicoes, int num)
 {
     if(DEBUG)
