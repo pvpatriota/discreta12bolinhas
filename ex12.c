@@ -555,6 +555,13 @@ void desenha_estados(BITMAP *buff)
         printf("Estados criados com sucesso");
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A função desenha_transicoes, tem como finalidade desenhar a quantidade de transicoes que foram armazenadas na variavel TR após ter sido lida pelos arquivos de texto e assim como a funcao desenha_estados, ao final retornará para a funcao gerar_imagem, onde será criada a imagem ex12.bmp com as transições.
+ * @param[out] - O ponteiro buff, do tipo BITMAP, é um ponteiro que se caracteriza como um sentido de saída, já que ele vai ser instanciado para criar um arquivo que será entregue e posteriormente visualizado pelo usuário..
+ * @param[in] - O ponteiro *p_transicoes do tipo de estrutura transicoes, recebe a lista transicoes, onde ele encontrará os respectivos valores para realizar o desenho das transicoes..
+ */
 void desenha_transicoes(BITMAP *buff, transicoes *p_transicoes)
 {
     int i,c=0,k=1;
