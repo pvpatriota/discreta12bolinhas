@@ -730,6 +730,15 @@ arcos *retirar_arco(arcos **p_arco) /*Esta funcao so pode ser utilizada caso se 
     return pl;
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao transferir arcos tem como finalidade fazer a ligação correta entre os arcos e as transicoes..
+ * @param[in] - O ponteiro de ponteiro p_transicao recebe a lista transicoes que é enviada na chamada da funcao.
+ * @param[in] - O ponteiro de ponteiro p_arcos, vai receber a lista de arcos que também é enviada na chamada da funcao.
+ * @param[in] - A Variável A1, do tipo inteira, recebe a quantidade de arcos que vão de estados para as transicoes.
+ * @param[in] - A Variável A2, do tipo inteira, recebe a quantidade de arcos que vão das transicoes para os estados.
+ */
 void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
 {
     if(DEBUG)
