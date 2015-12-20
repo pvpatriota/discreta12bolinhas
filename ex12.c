@@ -25,6 +25,7 @@
  *   João Pedro Pacheco Rodrigues Almeida                                  *
  *   Paulo Vitor Alves Patriota                                            *
  *   Email: paulovitorpatriota@gmail.com                                   *
+ *          joao_pra@hotmail.com                                           *
  *   Webpage: http://www.upe.br                                            *
  *   Phone: +55 (81) 9-9966-1154                                           *
  *          +55 (81) 9-9337-5011                                           *
