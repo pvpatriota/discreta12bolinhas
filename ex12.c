@@ -677,6 +677,15 @@ void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
 
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao arctan é a responsavel por fazer as ligacoes corretas dos arcos para os estados ou transicoes, fazendo com que saiam dos centros dos estados e possam chegar nos centros das transicoes ou saindo dos centro das transicoes para chegarem ao centro dos estados.
+ * @param[in] - A variavel X1 do tipo float, indica a posicação inicial do arco que sai do estado ou da transicao no eixo horizontal.
+ * @param[in] - A variável Y1 do tipo float, indica a posicao inicial do arco que sai do estado ou da transico no eixo vertical.
+ * @param[in] - A variável X2 do tipo float, indica a posicao final do arco que chega no estado ou transicao do eixo horizontal.
+ * @param[in] - A variável Y2 do tipo float, indica a posicao final do arco que chega no estado ou transicao do eixo vertical.
+ * */
 float arctan(float x1, float y1, float x2, float y2)
 {
     if(x2 == x1)
