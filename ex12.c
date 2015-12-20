@@ -836,6 +836,14 @@ void criar_arcos(arcos **p_arcos, int a1, int a2)
         printf("Fim da funcao criar_arcos.\n");
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao procurar estados vai procurar um determinado estado dentro da lista de estados.
+ * @param[in] - O ponteiro p_estados recebe a lista estados que é enviada na chamada da funcao procurar_estados.
+ * @param[in] - A Variável NUM, do tipo inteira, recebe a quantidade de estados existentes.
+ * @return Retorna a nova o estados desejado como posicao atual da lista.
+ */
 estados *procurar_estado(estados *p_estados, int num)
 {
     /*if(DEBUG)
