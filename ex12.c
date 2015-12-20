@@ -790,6 +790,18 @@ void transferir_arco(arcos **p_arco, transicoes *p_transicao, int a1, int a2)
         printf("Fim da funcao transferir_arco.\n");
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao criar arcos é a responsável por criar todos os arcos necessárias para o correto funcionamento do programa.
+ * @param[in] - O ponteiro de ponteiro p_arcos recebe a lista arcos que é enviada na chamada da funcao criar_arcos dentro da funcao main.
+ * @param[in] - A Variável A1, do tipo inteira, recebe a quantidade de arcos que vão de estados para as transicoes.
+ * @param[in] - A Variável A2, do tipo inteira, recebe a quantidade de arcos que vão das transicoes para os estados.
+ * @param[in] - A variavel X, do tipo inteiro será usada para ler os dados da lista referente ao campo de origem do arco.
+ * @param[in] - A variável Z, do tipo inteiro, será usada para ler os dados da lista referente ao campo destino do arco.
+ * @param[in] - A variável Y, do tipo inteiro, será usada para ler os dados da lista referente ao campo custo do arco.
+ * @param[in] - A variável AUX, do tipo inteiro, é utilizada para auxliar o funcionamento da funcao criar_arcos.
+ */
 void criar_arcos(arcos **p_arcos, int a1, int a2)
 {
     if(DEBUG)
