@@ -774,6 +774,16 @@ float lcos(float x1, float y1, float x2, float y2)
     return ((x2-x1)/sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)));
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao lsin tem a mesma finalidade da funcao lcos, que é garantir o posicionamento corretos dos arcos com os respectivos centros das transicoes e dos estados. Corrigindo também os triangulos formados, devido aos calculos dos senos e cossenos.
+ * @param[in] - A variavel X1 do tipo float, indica a posicação inicial do arco que sai do estado ou da transicao no eixo horizontal.
+ * @param[in] - A variável Y1 do tipo float, indica a posicao inicial do arco que sai do estado ou da transico no eixo vertical.
+ * @param[in] - A variável X2 do tipo float, indica a posicao final do arco que chega no estado ou transicao do eixo horizontal.
+ * @param[in] - A variável Y2 do tipo float, indica a posicao final do arco que chega no estado ou transicao do eixo vertical.
+ * @return O valor do centro.
+ * */
 float lsin(float x1, float y1, float x2, float y2)
 {
     if(x1==0 && x2 == 0 && y1 == 0 && y2 == 0)
