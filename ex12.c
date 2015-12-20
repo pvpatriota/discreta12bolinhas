@@ -895,6 +895,14 @@ transicoes *procurar_transicao(transicoes *p_transicoes, int num)
     return pl;
 }
 
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao relacionar tokens tem como finalidade relacionar a quantidade de estados com os seus respectivos tokens, ou seja, essa funcao vai inicializar os estados, colocando a quantidade de tokens necessárias a partir da leitura dos arquivos de textos disponibilizados..
+ * @param[in] - O ponteiro p_estados recebe a lista estados que é enviada na chamada da funcao procurar_estados.
+ * @param[in] - A Variável NUM, do tipo inteira, recebe a quantidade de estados existentes que possuem tokens.
+ * 
+ */
 void relacionar_tokens(estados *p_estados, int num)
 {
     int est, tok; /*Estado e token.*/
