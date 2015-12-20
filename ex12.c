@@ -756,6 +756,17 @@ void desenha_arcos(int qo, int qf, BITMAP *buff, int k, int c, int flag)
     textprintf_ex(buff, font, x2, y2, CORVERDE, CORPRETO, "%d", c);
 
 }
+
+/* ---------------------------------------------------------------------- */
+/**
+ * @ingroup Funcoes
+ * @brief - A funcao lcos é a responsavel por garantir o posicionamento correto dos arcos com os respectivos centros das transicoes e dos estados. Com essa funcao, os triangulos, antes originados de formas incorretas, agora passaram a ter os formatos corretos atraves dos calculos dos senos e cossenos.
+ * @param[in] - A variavel X1 do tipo float, indica a posicação inicial do arco que sai do estado ou da transicao no eixo horizontal.
+ * @param[in] - A variável Y1 do tipo float, indica a posicao inicial do arco que sai do estado ou da transico no eixo vertical.
+ * @param[in] - A variável X2 do tipo float, indica a posicao final do arco que chega no estado ou transicao do eixo horizontal.
+ * @param[in] - A variável Y2 do tipo float, indica a posicao final do arco que chega no estado ou transicao do eixo vertical.
+ * @return O valor do centro.
+ * */
 float lcos(float x1, float y1, float x2, float y2)
 {
     if(x1==0 && x2 == 0 && y1 == 0 && y2 == 0)
