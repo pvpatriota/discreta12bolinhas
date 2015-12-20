@@ -196,7 +196,7 @@ typedef struct stadt /*Estrutura para auxiliar na criacao das threads.*/
 
 /* ---------------------------------------------------------------------- */
 /** 
- * @ingroup Protótipos das funcoes
+ * @ingroup Protótipos_das_funcoes
  * @brief - Declaração dos protótipos das funcoes que serão utilizadas para simular a rede de petri.
  */
 void gerar_entrada(estados **p_estados, transicoes **p_transicoes); /*Funcao respostavel por ler e administrar entrada do programa.*/
@@ -222,7 +222,7 @@ float lsin(float x1, float y1, float x2, float y2);
 
 /* ---------------------------------------------------------------------- */
 /**
- * @ingroup Variaveis Globais
+ * @ingroup Variaveis_Globais
  * @brief - Variável EST, do tipo inteira e que recebe a quantidade de estados, declarada como global para receber os dados de entrada dos arquivos de texto e posteriormente ser utilizada para criar a imagem ex12.bmp com o allegro.
  */
 static int est; /**Qtd de Estados */
