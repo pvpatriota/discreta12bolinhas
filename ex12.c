@@ -45,9 +45,8 @@
 
 /* ---------------------------------------------------------------------- */
 /**
-* \file ex12.c
-* \ingroup DEFINES
-* \brief - Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
+* @ingroup DEFINES
+* @brief - Os defines utilizados para o funcionamento correto do programa, sem utilizar numeros dentro do código.
 */
 #define ITERACOES 10000
 #define DEBUG 0
@@ -66,7 +65,6 @@
 
 /* ---------------------------------------------------------------------- */
 /**
- * \file ex12.c
  * @ingroup Estruturas
  * @brief - Estruturas utilizadas para o correto funcionamento do programa.
  */
@@ -77,7 +75,7 @@
  * @brief  - A estrutura sestados cujo o nome definido foi estados, irá armazenar as informacoes sobre os estados da rede de petri.
  * @param[in] - Ne recebe o número de estados.
  * @param[in] - Nt recebe o numero de tokens de cada estado.
- * @param - O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
+ * @param[out] - O ponteiro prox aponta para o elemento seguinte da lista. Este ponteiro também é uma variável da estrutura sestados.
  */
 typedef struct sestados /*Estrutura para armazenar estados.*/
 {
