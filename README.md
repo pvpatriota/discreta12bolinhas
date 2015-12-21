@@ -11,7 +11,7 @@ Este programa tem como finalidade simular uma REDE DE PETRI, utilizando o concei
 @date 2015-12-19
 
 @author Paulo Vítor Alves Patriota
-@author João Pedro
+@author João Pedro Pacheco Rodrigues Almeida
 
 @par Webpage
 <<http://www.upe.br>>
